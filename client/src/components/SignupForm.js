@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import { useHistory } from "react-router-dom";
 const SignupForm = ({setCurrentUser}) => {
   const [formData, setFormData] = useState({
     username: "",
@@ -13,6 +13,7 @@ const SignupForm = ({setCurrentUser}) => {
       [e.target.name]: e.target.value,
     });
   };
+  const history={useHistory}
   function handleSubmit(e) {
     e.preventDefault();
 
@@ -27,7 +28,7 @@ const SignupForm = ({setCurrentUser}) => {
     }).then((res) => {
       if (res.ok) {
         res.json().then((user) => {
-          setCurrentUser(user);
+          setCurrentUser(user);history.push('/profile')
         });
       } else {
         res.json().then((errors) => {

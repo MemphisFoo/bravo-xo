@@ -1,6 +1,7 @@
 import './App.css';
 import { useState, useEffect } from 'react';
 import {BrowserRouter, Switch, Route} from "react-router-dom";
+import { useHistory } from 'react-router-dom';
 import LoginForm from "./components/LoginForm" 
 import SignupForm from "./components/SignupForm"
 import NavBar from "./components/NavBar"
@@ -26,23 +27,32 @@ function App() {
 // function handleLogin(currentUser) {
 //   setCurrentUser(currentUser)
 // }
-
-// function handleLogout(currentUser) {  
-//   setCurrentUser(null)}
+const history = {useHistory}
+const handleLogout = () => {
+  fetch("/logout", {method:"DELETE"})
+  .then((res) => {
+    if(res.ok) {
+      setCurrentUser(null);
+      setIsLoggedIn(false);
+      history.push("/")
+    }
+  });
+};
 
 return (
     <BrowserRouter>
-      <NavBar isloggedIn={isLoggedIn}/>
+      <NavBar handleLogout={handleLogout} isLoggedIn={isLoggedIn}/>
     <div className="App">
       <Switch>
         <Route exact path='/'>
-          <h1>Home</h1>
+          <h1>Home Page</h1>
         </Route>
         <Route path='/login'>
-          <LoginForm isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} setCurrentUser={setCurrentUser}/>
-          </Route>
+          <LoginForm isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} setCurrentUser={setCurrentUser} handleLogout={handleLogout}/>
+          <h1>It's All Happening</h1></Route>
           <Route path='/signup'>
             <SignupForm setCurrentUser={setCurrentUser}/>
+            <h1>I'm signing up</h1>
             </Route>
             <Route path="/profile">
               <h1>Profile</h1>
