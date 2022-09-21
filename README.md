@@ -25,6 +25,11 @@ STRETCH GOALS
 * Set up a date with that user through a calendar function.
 * Create a trivia quiz that provides you with a character result that is added to your profile.
 
+Schema!
+[Bravo_XO-2nd_draft](https://user-images.githubusercontent.com/104162756/191546036-dc8b1bc8-efb0-45b3-be2b-49875722945b.png)
+
+
+
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
