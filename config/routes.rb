@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  resources :messages
+  resources :participants
+  resources :conversations
+  resources :block_users
+  resources :grades
+  resources :user_photos
+  resources :sexualities
+  resources :interested_in_sexualities
   resources :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

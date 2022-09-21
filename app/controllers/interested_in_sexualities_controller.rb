@@ -1,0 +1,2 @@
+class InterestedInSexualitiesController < ApplicationController
+end

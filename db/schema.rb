@@ -10,9 +10,77 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_20_193737) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_21_042102) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "block_users", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "user_id_blocked"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "conversations", force: :cascade do |t|
+    t.integer "user_id"
+    t.datetime "time_started", precision: nil
+    t.datetime "time_closed", precision: nil
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "grades", force: :cascade do |t|
+    t.integer "user_id_given"
+    t.integer "user_id_received"
+    t.integer "grade"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "interested_in_sexualities", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "sexuality_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.integer "participant_id"
+    t.text "message"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "participants", force: :cascade do |t|
+    t.integer "conversation_id"
+    t.integer "user_id"
+    t.datetime "time_joined", precision: nil
+    t.datetime "time_left", precision: nil
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "sexualities", force: :cascade do |t|
+    t.boolean "straight"
+    t.boolean "lesbian"
+    t.boolean "gay"
+    t.boolean "bisexual"
+    t.boolean "transgender_male"
+    t.boolean "transgender_female"
+    t.boolean "non_binary"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "user_photos", force: :cascade do |t|
+    t.integer "user_id"
+    t.text "link"
+    t.text "details"
+    t.datetime "time_added", precision: nil
+    t.boolean "active"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "first_name"
