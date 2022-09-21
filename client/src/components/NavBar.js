@@ -15,8 +15,8 @@ function NavBar({isLoggedIn}) {
       <img id="navbar-logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Bravo_TV_%282017_Logo%29.png/793px-Bravo_TV_%282017_Logo%29.png?20170210001612" alt="" 
       onClick = {handleClick}/>
       <span id="banner">
-      {isLoggedIn ? (<Link className="route-link" to="/">Logout</Link>) 
-      : (<Link className="route-link" to="/login">Login</Link>)}
+      {!isLoggedIn ? (<Link className="route-link" to="/login">Login</Link>) : 
+      (<><Link className="route-link" to="/">Logout</Link><Link className="route-link" to="/profile">Profile</Link></>)}
           <Link className="route-link" to="/">Home</Link>
           <Link className="route-link" to="/signup">Signup</Link>
       </span>
