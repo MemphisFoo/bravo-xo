@@ -1,0 +1,43 @@
+#navbar {
+    height: 200px;
+    align-items: center;
+    display: flex;
+    margin-bottom: 4%;
+}
+
+#navbar-logo {
+    float: left;
+    height: 100%;
+}
+
+#banner {
+    display: flex;
+    float: left;
+    background-color: #333;
+    height: 50px;
+    width: 100%;
+    justify-content: center;
+}
+
+.route-link {
+    color: white;
+    font-family: "CoreCircus", sans-serif;
+    font-size: 1.3vw;
+    text-decoration: none;
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-top: 9px;
+}
+
+.route-link:hover {
+    background-color: white;
+    opacity: 80%;
+    color: #333;
+}
+
+#button-banner {
+    height: 40px;
+    width: 70%;
+    background-color: #333;
+    margin-bottom: 2%;
+}
