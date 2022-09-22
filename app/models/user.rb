@@ -1,8 +1,8 @@
 class User < ApplicationRecord
 
     #Users
-    has_many :interested_in_sexualities
-    has_many :sexualities, through: :interested_in_sexualities
+    has_many :user_sexualities
+    has_many :sexualities, through: :user_sexualities
 
     #Conversations
     has_many :participants

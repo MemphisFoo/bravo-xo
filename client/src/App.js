@@ -45,7 +45,7 @@ return (
     <div className="App">
       <Switch>
         <Route exact path='/'>
-          <h1>Home Page</h1>
+          <h1>Home</h1>
         </Route>
         <Route path='/login'>
           <LoginForm isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} setCurrentUser={setCurrentUser} handleLogout={handleLogout}/>
