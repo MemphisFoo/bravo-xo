@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_21_040428) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_22_190157) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -38,7 +38,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_21_040428) do
   end
 
   create_table "messages", force: :cascade do |t|
-    t.integer "paticipant_id"
+    t.integer "participant_id"
     t.text "message"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -49,6 +49,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_21_040428) do
     t.integer "user_id"
     t.datetime "time_joined", precision: nil
     t.datetime "time_left", precision: nil
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "pronouns", force: :cascade do |t|
+    t.text "option"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -71,7 +78,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_21_040428) do
     t.string "last_name"
     t.text "profile_photo"
     t.text "bio"
-    t.text "pronouns"
     t.string "username"
     t.string "email"
     t.string "password_digest"

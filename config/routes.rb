@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :pronouns
   resources :messages
   resources :participants
   resources :conversations
