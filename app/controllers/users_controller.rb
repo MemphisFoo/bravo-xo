@@ -23,8 +23,22 @@ class UsersController < ApplicationController
         render json: users, status: :ok
     end
 
+    def update
+       user=User.update!(full_params) 
+       render json: user, status: :accepted
+    end
+
+    def search
+        user=find_user
+        render json: user, status: :ok
+    end
+
     private
 
+    def full_params
+    params.permit(:first_name, :last_name, :username, :choose_pronoun, :sexuality, :profile_photo, :bio, :password, :email, :password_confirmation,)
+    end    
+    
     def user_params
         params.permit(:username, :password, :email, :password_confirmation)
     end

@@ -1,2 +1,0 @@
-class PronounsController < ApplicationController
-end

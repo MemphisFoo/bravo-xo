@@ -5,7 +5,8 @@ class CreateUsers < ActiveRecord::Migration[7.0]
       t.string :last_name
       t.text :profile_photo
       t.text :bio
-      t.text :pronouns
+      t.integer :choose_pronoun_id
+      t.integer :sexuality_id
       t.string :username
       t.string :email
       t.string :password_digest

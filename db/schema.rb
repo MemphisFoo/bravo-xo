@@ -10,13 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_22_190157) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_23_193053) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "block_users", force: :cascade do |t|
     t.integer "user_id"
     t.integer "user_id_blocked"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "choose_pronouns", force: :cascade do |t|
+    t.string "pick"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -53,22 +59,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_22_190157) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "pronouns", force: :cascade do |t|
-    t.text "option"
-    t.integer "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "sexualities", force: :cascade do |t|
-    t.string "choice"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "user_sexualities", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "sexuality_id"
+    t.string "choose"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -78,6 +70,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_22_190157) do
     t.string "last_name"
     t.text "profile_photo"
     t.text "bio"
+    t.integer "choose_pronoun_id"
+    t.integer "sexuality_id"
     t.string "username"
     t.string "email"
     t.string "password_digest"
