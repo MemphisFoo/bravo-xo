@@ -1,3 +1,4 @@
 class SexualitySerializer < ActiveModel::Serializer
-  attributes :id, :choice
+  attributes :id, :choose
+  has_many :users
 end
