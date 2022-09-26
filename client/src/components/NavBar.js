@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useHistory } from "react-router-dom";
 import "./stylesheets/navbar.css"
-
+import "./components/Filter.js"
 function NavBar({handleLogout, isLoggedIn}) {
 
   let history = useHistory()
@@ -20,6 +20,7 @@ function NavBar({handleLogout, isLoggedIn}) {
       <Link className="route-link" to="/" onClick={handleLogout}>Logout</Link></>)
       : (<><Link className="route-link" to="/login">Login</Link>
       <Link className="route-link" to="/signup">Signup</Link></>)}
+      <Filter></Filter>
       </span>
     </div>
   );

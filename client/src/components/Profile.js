@@ -13,20 +13,26 @@ function Profile({currentUser}) {
   }
   )
   return (
-    <div>
-      <div id="profile-div">
-            <div>Username: {currentUser.username} ({currentUser.pronoun})</div>
-            <div>Bio: "{currentUser.bio}"</div>
-            <div id="profile-img">
+    <div> 
+      <ul>
+        <div id="profile-div">
+            <li>Username: {currentUser.username} ({currentUser.pronoun})</li>
+           <br/> 
+           <li>Bio: "{currentUser.bio}"</li>
+           <br/> 
+           <div id="profile-img">
               <img id="profile-img-div" src={currentUser.profile_photo} alt=""/>
               </div>
+            <br/>
             <div>Sexuality: {currentUser.sexuality}</div>
+            <br/>
             <div className="flex flex-wrap gap-2">
   <Button gradientDuoTone="purpleToPink">
-   Edit profile
+   Edit
   </Button>
 </div>
       </div>
+      </ul>
     </div>
 
   )

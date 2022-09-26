@@ -1,7 +1,8 @@
 class User < ApplicationRecord
-    belongs_to :pronoun
-    belongs_to :sexuality
-    belongs_to :category
+   has_one :profile
+    # belongs_to :pronoun
+    # belongs_to :sexuality
+    # belongs_to :category
     # has_one :pronoun
     # has_one :sexuality
 

@@ -10,12 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_26_184038) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_26_220649) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "categories", force: :cascade do |t|
-    t.text "show"
+  create_table "profiles", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.text "profile_photo"
+    t.text "bio"
+    t.integer "show_id"
+    t.integer "pronoun_id"
+    t.integer "sexuality_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -28,6 +34,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_26_184038) do
 
   create_table "sexualities", force: :cascade do |t|
     t.string "choose"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "shows", force: :cascade do |t|
+    t.text "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

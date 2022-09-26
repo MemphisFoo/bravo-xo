@@ -1,5 +1,5 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :email, :username, :password_digest, :first_name, :last_name, :profile_photo, :bio, :category_id, :sexuality_id, :pronoun_id, :category, :sexuality, :pronoun
+  attributes :id, :email, :username, :password_digest
   
   def user
     "#{object.user}"

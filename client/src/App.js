@@ -6,11 +6,13 @@ import LoginForm from "./components/LoginForm"
 import SignupForm from "./components/SignupForm"
 import NavBar from "./components/NavBar"
 import Profile from "./components/Profile"
+import Filter from "./components/Filter"
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(null);
   const [currentUser, setCurrentUser] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [search, setSearch] = useState("")
 
   useEffect(() => {
     fetch("/me")
@@ -60,6 +62,9 @@ return (
             <Route exact path="/profile">
               <Profile currentUser={currentUser}/>
             </Route>
+            <Filter
+            search={search}
+            onSearchChange={setSearch}/>
       </Switch>
     </div>
     </BrowserRouter>
