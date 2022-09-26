@@ -46,7 +46,9 @@ return (
     <div className="App">
       <Switch>
         <Route exact path='/'>
-          <h1>Landing Page</h1>
+          <h1>*I want this to show results of users within 5 miles of the user*
+            <br/>
+            <br/>Let's find your Bravo-mate</h1>
         </Route>
         <Route exact path='/login'>
           <LoginForm isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} setCurrentUser={setCurrentUser} handleLogout={handleLogout}/>

@@ -29,7 +29,7 @@ class UsersController < ApplicationController
     end
 
     def search
-        user=find_user
+        user=User.find(user_search_params)
         render json: user, status: :ok
     end
 

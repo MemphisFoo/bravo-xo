@@ -1,7 +1,17 @@
-import React from 'react'
+import {Button} from 'flowbite-react'
+import React, { useState, useEffect } from 'react'
 import "./stylesheets/profile.css"
 function Profile({currentUser}) {
+
+  const [updateProfile, setUpdateProfile] = useState(null)
   
+  useEffect(() => {
+    fetch("/profile")
+    .then((r) => {
+
+    })
+  }
+  )
   return (
     <div>
       <div id="profile-div">
@@ -11,6 +21,11 @@ function Profile({currentUser}) {
               <img id="profile-img-div" src={currentUser.profile_photo} alt=""/>
               </div>
             <div>Sexuality: {currentUser.sexuality}</div>
+            <div className="flex flex-wrap gap-2">
+  <Button gradientDuoTone="purpleToPink">
+   Edit profile
+  </Button>
+</div>
       </div>
     </div>
 
