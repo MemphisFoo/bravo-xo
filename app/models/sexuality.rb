@@ -1,4 +1,5 @@
 class Sexuality < ApplicationRecord
-    has_many :users
-    has_many :pronouns, through: :users
+   has_one :user 
+#    belongs_to :user
+    # has_many :pronouns, through: :users
 end

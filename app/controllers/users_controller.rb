@@ -43,7 +43,12 @@ class UsersController < ApplicationController
         params.permit(:username, :password, :email, :password_confirmation)
     end
 
+    def user_search_params
+        params.permit(:username, :first_name, :last_name)
+    end
+
     def find_user
-        User.find(params[:id]) 
-    end    
+        User.find(user_search_params) 
+    end  
+
 end

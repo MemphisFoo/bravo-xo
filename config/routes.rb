@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :categories
+  resources :profiles
   resources :pronouns
   resources :choose_pronouns
   resources :messages
@@ -33,4 +35,8 @@ get '/users/:id', to: "users#search"
 
 #Pronouns
 get '/pronouns', to: "choose_pronouns#index"
+
+#Profile
+
+get'/profile', to: "users#show"
 end

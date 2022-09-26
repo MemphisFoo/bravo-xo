@@ -1,6 +1,7 @@
 import React from 'react'
 import "./stylesheets/profile.css"
 function Profile({currentUser}) {
+  
   return (
     <div>
       <div id="profile-div">
