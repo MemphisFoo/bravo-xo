@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :categories
+  resources :profiles
+  resources :pronouns
+  resources :choose_pronouns
   resources :messages
   resources :participants
   resources :conversations
@@ -20,10 +24,19 @@ Rails.application.routes.draw do
 #Logged in
 get '/me', to: "users#show"
 post "/login", to: "sessions#create"
-
 #Logged out
 delete "/logout", to: "sessions#destroy"
 
 #Users
 get '/users', to: "users#index"
+
+#Search
+get '/users/:id', to: "users#search"
+
+#Pronouns
+get '/pronouns', to: "choose_pronouns#index"
+
+#Profile
+
+get'/profile', to: "users#show"
 end

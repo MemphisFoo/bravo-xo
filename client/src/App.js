@@ -5,6 +5,7 @@ import { useHistory } from 'react-router-dom';
 import LoginForm from "./components/LoginForm" 
 import SignupForm from "./components/SignupForm"
 import NavBar from "./components/NavBar"
+import Profile from "./components/Profile"
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(null);
@@ -45,17 +46,19 @@ return (
     <div className="App">
       <Switch>
         <Route exact path='/'>
-          <h1>Home Page</h1>
+          <h1>*I want this to show results of users within 5 miles of the user*
+            <br/>
+            <br/>Let's find your Bravo-mate</h1>
         </Route>
-        <Route path='/login'>
+        <Route exact path='/login'>
           <LoginForm isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} setCurrentUser={setCurrentUser} handleLogout={handleLogout}/>
-          <h1>It's All Happening</h1></Route>
-          <Route path='/signup'>
+          <h1>This is my login page</h1></Route>
+          <Route exact path='/signup'>
             <SignupForm setCurrentUser={setCurrentUser}/>
             <h1>I'm signing up</h1>
             </Route>
-            <Route path="/profile">
-              <h1>Profile</h1>
+            <Route exact path="/profile">
+              <Profile currentUser={currentUser}/>
             </Route>
       </Switch>
     </div>

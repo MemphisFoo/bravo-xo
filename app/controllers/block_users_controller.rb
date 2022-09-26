@@ -1,2 +1,0 @@
-class BlockUsersController < ApplicationController
-end

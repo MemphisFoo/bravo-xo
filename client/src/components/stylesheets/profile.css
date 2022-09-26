@@ -1,0 +1,15 @@
+#profile-div {
+    display: flex;
+    flex-direction: row;
+    width: 675px;
+  }
+  
+  #profile-img {
+    float: left;
+    height: 100%
+  }
+  
+  #profile-img-div {
+    height: 200px;
+    padding: 15px
+  }

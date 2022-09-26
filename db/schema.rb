@@ -10,76 +10,39 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_21_203428) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_26_184038) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "block_users", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "user_id_blocked"
+  create_table "categories", force: :cascade do |t|
+    t.text "show"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "conversations", force: :cascade do |t|
-    t.integer "user_id"
-    t.datetime "time_started", precision: nil
-    t.datetime "time_closed", precision: nil
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "grades", force: :cascade do |t|
-    t.integer "user_id_given"
-    t.integer "user_id_received"
-    t.integer "grade"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "interested_in_sexualities", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "sexuality_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "messages", force: :cascade do |t|
-    t.integer "participant_id"
-    t.text "message"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "participants", force: :cascade do |t|
-    t.integer "conversation_id"
-    t.integer "user_id"
-    t.datetime "time_joined", precision: nil
-    t.datetime "time_left", precision: nil
+  create_table "pronouns", force: :cascade do |t|
+    t.string "preference"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "sexualities", force: :cascade do |t|
-    t.boolean "straight"
-    t.boolean "lesbian"
-    t.boolean "gay"
-    t.boolean "bisexual"
-    t.boolean "transgender_male"
-    t.boolean "transgender_female"
-    t.boolean "non_binary"
+    t.string "choose"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
+    t.string "email"
+    t.string "username"
+    t.string "password_digest"
     t.string "first_name"
     t.string "last_name"
-    t.integer "gender_id"
-    t.text "details"
-    t.string "username"
-    t.string "email"
-    t.string "password_digest"
+    t.text "profile_photo"
+    t.text "bio"
+    t.integer "category_id"
+    t.integer "pronoun_id"
+    t.integer "sexuality_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
