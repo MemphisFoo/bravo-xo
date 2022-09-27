@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import {Label, TextInput} from 'flowbite-react'
+// import {Label, TextInput} from 'flowbite-react'
+
 const SignupForm = ({setCurrentUser}) => {
   const [formData, setFormData] = useState({
     username: "",

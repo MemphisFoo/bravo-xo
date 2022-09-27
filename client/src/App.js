@@ -6,8 +6,8 @@ import LoginForm from "./components/LoginForm"
 import SignupForm from "./components/SignupForm"
 import NavBar from "./components/NavBar"
 import Profile from "./components/Profile"
-import Filter from "./components/Filter"
-
+// import Filter from "./components/Filter"
+import EditProfileForm from "./components/EditProfileForm"
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(null);
   const [currentUser, setCurrentUser] = useState(null);
@@ -26,6 +26,14 @@ function App() {
     }
   })
 }, []);
+
+
+
+// function handleUpdatedProfile(updatedProfile){
+//   const updatedProfile
+// }
+
+
 
 // function handleLogin(currentUser) {
 //   setCurrentUser(currentUser)
@@ -60,11 +68,14 @@ return (
             <h1>I'm signing up</h1>
             </Route>
             <Route exact path="/profile/:id">
-              <Profile />
+              <Profile setCurrentUser={setCurrentUser} />
             </Route>
-            <Filter
+            <Route exact path="/profiles/:id/edit">
+              <EditProfileForm currentUser={currentUser} setCurrentUser={setCurrentUser} />
+            </Route>
+            {/* <Filter
             search={search}
-            onSearchChange={setSearch}/>
+            onSearchChange={setSearch}/> */}
       </Switch>
     </div>
     </BrowserRouter>
