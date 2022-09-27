@@ -1,16 +1,12 @@
 Rails.application.routes.draw do
-  resources :categories
+  resources :shows
   resources :profiles
   resources :pronouns
-  resources :choose_pronouns
   resources :messages
   resources :participants
   resources :conversations
   resources :block_users
-  resources :grades
-  resources :user_photos
   resources :sexualities
-  resources :interested_in_sexualities
   resources :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -27,9 +23,9 @@ post "/login", to: "sessions#create"
 #Logged out
 delete "/logout", to: "sessions#destroy"
 
-#Users
+#Users/Profiles
 get '/users', to: "users#index"
-
+get '/profiles', to: "profiles#index"
 #Search
 get '/users/:id', to: "users#search"
 
