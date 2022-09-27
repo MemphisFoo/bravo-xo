@@ -1,37 +1,45 @@
-import {Button} from 'flowbite-react'
+import { Button } from 'flowbite-react'
 import React, { useState, useEffect } from 'react'
 import "./stylesheets/profile.css"
-function Profile({currentUser}) {
+import { useParams } from 'react-router-dom'
+function Profile() {
 
-  const [updateProfile, setUpdateProfile] = useState(null)
-  
+  const [profile, setProfile] = useState({pronoun: {}, sexuality: {}, show:{}})
+  // might need to put useEffect in a conditional in case currentUser is nil 
+  const { id } = useParams()
+
   useEffect(() => {
-    fetch("/profile")
-    .then((r) => {
-
-    })
+    fetch(`/profiles/${id}`)
+      .then((res) => res.json())
+      .then(data => setProfile(data))
+  }, [])
+  console.log(profile)
+  if (!profile) {
+    return (<div>loading...</div>
+    )
   }
-  )
   return (
-    <div> 
+    <div>
       <ul>
         <div id="profile-div">
-            <li>Username: {currentUser.username} ({currentUser.pronoun})</li>
-           <br/> 
-           <li>Bio: "{currentUser.bio}"</li>
-           <br/> 
-           <div id="profile-img">
-              <img id="profile-img-div" src={currentUser.profile_photo} alt=""/>
-              </div>
-            <br/>
-            <div>Sexuality: {currentUser.sexuality}</div>
-            <br/>
-            <div className="flex flex-wrap gap-2">
-  <Button gradientDuoTone="purpleToPink">
-   Edit
-  </Button>
-</div>
-      </div>
+          <li>Username: {profile.username} ({profile.pronoun.preference})</li>
+          <br />
+          <li>Bio: "{profile.bio}"</li>
+          <br />
+          <div id="profile-img">
+            <img id="profile-img-div" src={profile.profile_photo} alt="" />
+          </div>
+          <br />
+          <div>Sexuality: {profile.sexuality.choose}</div>
+          <br/>
+          <div>Show: {profile.show.title}</div>
+          <br />
+          <div className="flex flex-wrap gap-2">
+            <Button gradientDuoTone="purpleToPink">
+              Edit
+            </Button>
+          </div>
+        </div>
       </ul>
     </div>
 

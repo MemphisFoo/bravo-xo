@@ -22,6 +22,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_26_220649) do
     t.integer "show_id"
     t.integer "pronoun_id"
     t.integer "sexuality_id"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -39,7 +40,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_26_220649) do
   end
 
   create_table "shows", force: :cascade do |t|
-    t.text "title"
+    t.string "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -48,13 +49,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_26_220649) do
     t.string "email"
     t.string "username"
     t.string "password_digest"
-    t.string "first_name"
-    t.string "last_name"
-    t.text "profile_photo"
-    t.text "bio"
-    t.integer "category_id"
-    t.integer "pronoun_id"
-    t.integer "sexuality_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

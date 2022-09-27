@@ -44,7 +44,7 @@ const handleLogout = () => {
 
 return (
     <BrowserRouter>
-      <NavBar handleLogout={handleLogout} isLoggedIn={isLoggedIn}/>
+      <NavBar currentUser={currentUser} handleLogout={handleLogout} isLoggedIn={isLoggedIn}/>
     <div className="App">
       <Switch>
         <Route exact path='/'>
@@ -59,8 +59,8 @@ return (
             <SignupForm setCurrentUser={setCurrentUser}/>
             <h1>I'm signing up</h1>
             </Route>
-            <Route exact path="/profile">
-              <Profile currentUser={currentUser}/>
+            <Route exact path="/profile/:id">
+              <Profile />
             </Route>
             <Filter
             search={search}

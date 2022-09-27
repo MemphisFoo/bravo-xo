@@ -1,8 +1,8 @@
 import React from "react";
 import { Link, useHistory } from "react-router-dom";
 import "./stylesheets/navbar.css"
-import "./components/Filter.js"
-function NavBar({handleLogout, isLoggedIn}) {
+// import Filter from "./components/Filter.js"
+function NavBar({handleLogout, isLoggedIn, currentUser}) {
 
   let history = useHistory()
 
@@ -16,11 +16,11 @@ function NavBar({handleLogout, isLoggedIn}) {
       onClick = {handleClick}/>
       <span id="banner">
       {isLoggedIn ? (<><Link className="route-link" to="/">Home</Link>
-      <Link className="route-link" to="/profile">Profile</Link>
+      <Link className="route-link" to={`/profile/${currentUser.id}`}>Profile</Link>
       <Link className="route-link" to="/" onClick={handleLogout}>Logout</Link></>)
       : (<><Link className="route-link" to="/login">Login</Link>
       <Link className="route-link" to="/signup">Signup</Link></>)}
-      <Filter></Filter>
+      {/* <Filter></Filter> */}
       </span>
     </div>
   );

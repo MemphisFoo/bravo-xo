@@ -23,9 +23,9 @@ post "/login", to: "sessions#create"
 #Logged out
 delete "/logout", to: "sessions#destroy"
 
-#Users
+#Users/Profiles
 get '/users', to: "users#index"
-
+get '/profiles', to: "profiles#index"
 #Search
 get '/users/:id', to: "users#search"
 

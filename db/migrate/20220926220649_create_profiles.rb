@@ -8,6 +8,7 @@ class CreateProfiles < ActiveRecord::Migration[7.0]
       t.integer :show_id
       t.integer :pronoun_id
       t.integer :sexuality_id
+      t.integer :user_id
 
       t.timestamps
     end
