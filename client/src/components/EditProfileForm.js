@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from 'react-router-dom'
 import './stylesheets/edit_profile.css';
 
-function EditProfileForm() {
+function EditProfileForm({currentUser}) {
 
   const { id } = useParams()
   const [profile, setProfile] = useState()
@@ -71,7 +71,7 @@ function EditProfileForm() {
     },
     body: JSON.stringify(formData)})
     .then((r) => r.json())
-    .then(data => setProfile(formData));
+    .then(formData => setProfile(formData));
     }
     console.log(formData)
     return (<div>

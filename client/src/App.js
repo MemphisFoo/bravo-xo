@@ -75,7 +75,7 @@ function App() {
             <Profile />
           </Route>
           <Route exact path="/profiles/:id/edit">
-            <EditProfileForm />
+            <EditProfileForm currentUser={currentUser} />
           </Route>
           {/* <Filter
             search={search}
