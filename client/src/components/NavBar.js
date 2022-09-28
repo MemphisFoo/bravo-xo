@@ -16,7 +16,7 @@ function NavBar({handleLogout, isLoggedIn, currentUser}) {
       onClick = {handleClick}/>
       <span id="banner">
       {isLoggedIn ? (<><Link className="route-link" to="/">Home</Link>
-      <Link className="route-link" to={`/profile/${currentUser.id}`}>Profile</Link>
+      <Link className="route-link" to={`/profile/${currentUser.profile.id}`}>Profile</Link>
       <Link className="route-link" to="/" onClick={handleLogout}>Logout</Link></>)
       : (<><Link className="route-link" to="/login">Login</Link>
       <Link className="route-link" to="/signup">Signup</Link></>)}

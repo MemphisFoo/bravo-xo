@@ -1,5 +1,7 @@
 class User < ApplicationRecord
    has_one :profile
+   has_many :messages
+   has_many :chatrooms, through: :messages
     # belongs_to :pronoun
     # belongs_to :sexuality
     # belongs_to :category

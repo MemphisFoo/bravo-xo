@@ -15,29 +15,3 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-
-#profile-div {
-  display: flex;
-  flex-direction: row;
-  width: 675px;
-  border: 3.175em, solid #333;
-  background-color:blueviolet
-}
-
-#profile-img {
-  float: left;
-  height: 100%
-}
-
-#profile-img-div {
-  height: 400px;
-  padding: 15px;
-  background-color:antiquewhite
-}
-
-#profile-content-div {
-  border: 2.175em, solid #333;
-  background-color: aqua;
-}
-
-

@@ -1,10 +1,9 @@
 Rails.application.routes.draw do
+  resources :messages
+  resources :chatrooms
   resources :shows
   resources :profiles
   resources :pronouns
-  resources :messages
-  resources :participants
-  resources :conversations
   resources :block_users
   resources :sexualities
   resources :users
@@ -25,14 +24,16 @@ delete "/logout", to: "sessions#destroy"
 
 #Users/Profiles
 get '/users', to: "users#index"
-get '/profiles', to: "profiles#index"
+
 #Search
-get '/users/:id', to: "users#search"
+get "/users/:id", to: "users#search"
 
 #Pronouns
 get '/pronouns', to: "choose_pronouns#index"
 
 #Profile
 
-get'/profile', to: "users#show"
+get'/profiles', to: "users#show"
+# get '/profiles', to: "profiles#index"
+get '/profiles/:id/edit', to: "profiles#update"
 end
