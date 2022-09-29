@@ -1,7 +1,7 @@
-import { Button } from 'flowbite-react';
+import { Button} from 'flowbite-react';
 import React, { useState, useEffect } from 'react';
 import "./stylesheets/profile.css";
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 // import EditProfileForm from "./EditProfileForm"
 import {useHistory} from 'react-router-dom';
 
@@ -42,9 +42,9 @@ const history = useHistory()
           <div id ="profile-content-div">Show: {profile.show.title}</div>
           <br />
           <div className="flex flex-wrap gap-2">
-            <Button onClick={handleClick} gradientDuoTone="purpleToPink"> 
+            <Link className="route-link" to="/profiles/:id/edit"> 
               Edit
-            </Button>
+            </Link>
           </div>
         </div>
       </ul>

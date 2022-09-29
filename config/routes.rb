@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :block_users
   resources :sexualities
   resources :users
+  # mount ActionCable.server => '/cable'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
@@ -22,18 +23,20 @@ post "/login", to: "sessions#create"
 #Logged out
 delete "/logout", to: "sessions#destroy"
 
-#Users/Profiles
+#Users
 get '/users', to: "users#index"
 
 #Search
 get "/users/:id", to: "users#search"
 
 #Pronouns
-get '/pronouns', to: "choose_pronouns#index"
+get '/pronouns', to: "pronouns#index"
 
-#Profile
-
+#Profiles
 get'/profiles', to: "users#show"
 # get '/profiles', to: "profiles#index"
 get '/profiles/:id/edit', to: "profiles#update"
+
+#Shows
+get '/shows', to: "show#index"
 end

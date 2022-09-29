@@ -1,49 +1,56 @@
 import { Button } from 'flowbite-react';
 import React, { useState, useEffect } from "react";
-import { useParams } from 'react-router-dom'
+// import { useParams } from 'react-router-dom'
 import './stylesheets/edit_profile.css';
 
 function EditProfileForm({currentUser}) {
-
-  const { id } = useParams()
-  const [profile, setProfile] = useState()
+  const profile = currentUser.profile;
+  const [pronouns, setPronouns] = useState ([]);
+  const [sexualities, setSexualities] = useState ([]);
+  const [shows, setShows] = useState ([])
   const [formData, setFormData] = useState({
-    first_name: "",
-    last_name: "",
-    profile_photo: "",
-    bio: "",
-    show: "",
-    pronoun: "",
-    sexuality: "",
-    user: "",
-  })
-  // const handleChange = (e) => {
-  //   setFormData({
-  //     ...formData,
-  //     [e.target.name]: e.target.value,
-  //   });
-  // };
-  // useEffect(() => {
-  //   fetch(`/profiles/${id}`)
-  //     .then((r) => r.json())
-  //     .then(data => {
-  //       setProfile(data)
-  //     })
-  //   // console.log(formData)
-  // }, [])
-  // if (profile) {
-  //   const newFormData = {
-  //     first_name: profile.first_name,
-  //     last_name: profile.last_name,
-  //     profile_photo: profile.profile_photo,
-  //     bio: profile.bio,
-  //     show: profile.show.title,
-  //     pronoun: profile.pronoun.preference,
-  //     sexuality: profile.sexuality.choose,
-  //   }
-  //   setFormData(newFormData)
-  // }
+      username: profile.username,
+      first_name: profile.first_name,
+      last_name: profile.last_name,
+      profile_photo: profile.profile_photo,
+      bio: profile.bio,
+      show_id: profile.show.title,
+      pronoun_id: profile.pronoun.preference,
+      sexuality_id: profile.sexuality.choose,
+    });
+// console.log(formData)
 
+  // // const handleChange = (e) => {
+  // //   setFormData({
+  // //     ...formData,
+  // //     [e.target.name]: e.target.value,
+  // //   });
+  // // };
+
+  useEffect(() => {
+    fetch("/pronouns")
+      .then((r) => r.json())
+      .then(data => {
+        setPronouns(data)
+      })
+  }, [])
+
+  useEffect(() => {
+    fetch("/sexualities")
+      .then((r) => r.json())
+      .then(data => {
+        setSexualities(data)
+      })
+  }, [])
+
+  useEffect(() => {
+    fetch("/shows")
+      .then((r) => r.json())
+      .then(data => {
+        setShows(data)
+      })
+  }, [])
+  
   const handleChange = (e) => {
       setFormData({
         ...formData,
@@ -51,31 +58,9 @@ function EditProfileForm({currentUser}) {
       });
     };
 
-    // function onUpdateProfile(updatedProfile) {
-    //   const updatedProfileArray = .map((user) => {
-    //     if (currentUser.id === updatedProfile.id) {
-    //       return updatedProfile;
-    //     } else {
-    //       return currentUser;
-    //     }
-    //   });
-    //   setProfile(updatedProfileArray);
-    // }
 
-    function handleProfileUpdate(e){
-    e.preventDefault();
-    fetch(`/profiles/${id}`, {
-    method: "PATCH",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(formData)})
-    .then((r) => r.json())
-    .then(formData => setProfile(formData));
-    }
-    console.log(formData)
     return (<div>
-      <form id="edit-profile-div" onSubmit={handleProfileUpdate}>
+      <form id="edit-profile-div">
       <label id="edit-profile-content-div" htmlFor="first_name">First Name:</label>
       <input
         id="first_name-edit-input"
@@ -100,7 +85,7 @@ function EditProfileForm({currentUser}) {
         value={formData.bio}
         onChange={handleChange}
       />
-      <label id="edit-profile-content-div" htmlFor="sexuality_id">Sexuality:</label>
+      {/* <label id="edit-profile-content-div" htmlFor="sexuality_id">Sexuality:</label>
       <input
         id="sexuality-edit-input"
         type="text"
@@ -123,11 +108,11 @@ function EditProfileForm({currentUser}) {
         name="show"
         value={formData.show_id}
         onChange={handleChange}
-      />
+      /> */}
       <button type="submit">Save Changes</button>
     </form>
     </div>
     )
   }
 
-  export default EditProfileForm
+ export default EditProfileForm

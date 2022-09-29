@@ -52,7 +52,7 @@ function App() {
       });
   };
 
-  console.log(currentUser);
+  // console.log(currentUser);
 
   return (
     <BrowserRouter>
@@ -74,9 +74,9 @@ function App() {
           <Route exact path="/profile/:id">
             <Profile />
           </Route>
-          <Route exact path="/profiles/:id/edit">
+          {currentUser && (<Route exact path="/profiles/:id/edit">
             <EditProfileForm currentUser={currentUser} />
-          </Route>
+          </Route>)}
           {/* <Filter
             search={search}
             onSearchChange={setSearch}/> */}

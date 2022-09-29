@@ -9,7 +9,7 @@ return (
         <input
         type="text"
         name="search"
-        placeholder="take a look around"
+        placeholder="Explore the Bravoverse!"
         value={search}
         onChange={handleSearchChange}
         />
