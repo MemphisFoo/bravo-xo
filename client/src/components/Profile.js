@@ -43,7 +43,7 @@ const history = useHistory()
           <br />
           <div className="flex flex-wrap gap-2">
             <Link className="route-link" to="/profiles/:id/edit"> 
-              Edit
+              <button>Edit</button>
             </Link>
           </div>
         </div>
