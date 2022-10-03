@@ -6,13 +6,19 @@ import LoginForm from "./components/LoginForm"
 import SignupForm from "./components/SignupForm"
 import NavBar from "./components/NavBar"
 import Profile from "./components/Profile"
+import Shows from "./components/Shows"
+// import ShowsProfiles from "./components/ShowCards"
 // import Filter from "./components/Filter"
 import EditProfileForm from "./components/EditProfileForm"
 function App() {
+  const [pronouns, setPronouns] = useState([]);
+  const [sexualities, setSexualities] = useState([]);
+  const [shows, setShows] = useState([])
   const [isAuthenticated, setIsAuthenticated] = useState(null);
   const [currentUser, setCurrentUser] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [search, setSearch] = useState("")
+
 
   useEffect(() => {
     fetch("/me")
@@ -27,16 +33,25 @@ function App() {
       })
   }, []);
 
+  // $Promise.all code
+  useEffect(() => {
+    getSelections()
+  }, []);
 
+  function getSelections() {
+    const urls = ["/pronouns", "/sexualities", "/shows"]
+    Promise.all(urls.map((url) => fetch(url)))
+      .then((r) => Promise.all(r.map((r) => r.json())))
+      .then((data) => {
+        setPronouns(data[0])
+        setSexualities(data[1])
+        setShows(data[2])
+      })
+  }
 
-
-
-  // function handleUpdatedProfile(updatedProfile){
-  //   const updatedProfile
+  // function handleClick() {
+  //   setShowProfiles(show.profiles)
   // }
-
-
-
   // function handleLogin(currentUser) {
   //   setCurrentUser(currentUser)
   // }
@@ -65,8 +80,8 @@ function App() {
               <br />Let's find your Bravo-mate</h1>
           </Route>
           <Route exact path='/login'>
-            <LoginForm isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} setCurrentUser={setCurrentUser} handleLogout={handleLogout} />
-            <h1>This is my login page</h1></Route>
+            <LoginForm className="bg-black" isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} setCurrentUser={setCurrentUser} handleLogout={handleLogout} />
+            <h1 className="bg-black">This is my login page</h1></Route>
           <Route exact path='/signup'>
             <SignupForm setCurrentUser={setCurrentUser} />
             <h1>I'm signing up</h1>
@@ -75,11 +90,17 @@ function App() {
             <Profile />
           </Route>
           {currentUser && (<Route exact path="/profiles/:id/edit">
-            <EditProfileForm currentUser={currentUser} />
+            <EditProfileForm currentUser={currentUser} sexualities={sexualities} pronouns={pronouns} shows={shows} />
           </Route>)}
           {/* <Filter
             search={search}
             onSearchChange={setSearch}/> */}
+          <Route exact path="/shows">
+            <Shows shows={shows} />
+          </Route>
+          {/* <Route exact path="/shows/profiles">
+            <ShowsProfiles showProfiles={showProfiles} setShowProfiles={setShowProfiles} />
+          </Route> */}
         </Switch>
       </div>
     </BrowserRouter>

@@ -1,13 +1,14 @@
 import { Button } from 'flowbite-react';
 import React, { useState, useEffect } from "react";
-// import { useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import './stylesheets/edit_profile.css';
 
-function EditProfileForm({ currentUser }) {
+function EditProfileForm({ currentUser, pronouns, sexualities, shows }) {
+  const [profiles, setProfiles] = useState()
   const profile = currentUser.profile;
-  const [pronouns, setPronouns] = useState([]);
-  const [sexualities, setSexualities] = useState([]);
-  const [shows, setShows] = useState([])
+  // const [pronouns, setPronouns] = useState([]);
+  // const [sexualities, setSexualities] = useState([]);
+  // const [shows, setShows] = useState([])
   const [formData, setFormData] = useState({
     username: profile.username,
     first_name: profile.first_name,
@@ -27,26 +28,37 @@ function EditProfileForm({ currentUser }) {
       [e.target.name]: e.target.value,
     });
   };
-
-  // $Promise.all code
-  useEffect(() => {
-    getSelections()
-  }, []);
-
-  function getSelections() {
-    const urls = ["/pronouns", "/sexualities", "/shows"]
-    Promise.all(urls.map((url) => fetch(url)))
-      .then((r) => Promise.all(r.map((r) => r.json())))
-      .then((data) => {
-        setPronouns(data[0])
-        setSexualities(data[1])
-        setShows(data[2])
-      })
+  // $ function to update the profiles in the PATCH
+  function onUpdateProfile(updatedProfile) {
+    const updatedProfileArray = profiles.map((profile) => {
+      if (profile.id === updatedProfile.id) {
+        return updatedProfile;
+      } else {
+        return profiles;
+      }
+    });
+    setProfiles(updatedProfileArray)
   }
-  console.log(sexualities)
-  console.log(pronouns)
-  console.log(shows)
-  // $ end of Promise.all code
+
+  const { id } = useParams()
+  // $ PATCH for updating profile
+  function handleProfileUpdate(e) {
+    e.preventDefault();
+    fetch(`/profiles/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(formData)
+    })
+      .then((r) => r.json())
+      .then((updatedProfile) => {
+        onUpdateProfile(updatedProfile);
+      });
+  }
+  // console.log(sexualities)
+  // console.log(pronouns)
+  // console.log(shows)
 
   const sexualityOptions = sexualities.map((sexuality) => {
     return (
@@ -74,7 +86,7 @@ function EditProfileForm({ currentUser }) {
 
   return (
     <div>
-      <form id="edit-profile-div">
+      <form id="edit-profile-div" onSubmit={handleProfileUpdate}>
         <label id="edit-profile-content-div" htmlFor="first_name">First Name:</label>
         <input
           id="first_name-edit-input"
@@ -103,19 +115,19 @@ function EditProfileForm({ currentUser }) {
           <label>
             Sexuality:&nbsp; &nbsp;
           </label>
-          <select value={profile.sexuality.id}>
+          <select value={profile.sexuality.id} onChange={handleChange}>
             {sexualityOptions}
           </select>
           <label>
             Pronouns:&nbsp; &nbsp;
           </label>
-          <select value={profile.pronoun.id}>
+          <select value={profile.pronoun.id} onChange={handleChange}>
             {pronounOptions}
           </select>
           <label>
             Show:&nbsp; &nbsp;
           </label>
-          <select value={profile.show.id}>
+          <select value={profile.show.id} onChange={handleChange}>
             {showOptions}
           </select>
         </div>
@@ -127,30 +139,6 @@ function EditProfileForm({ currentUser }) {
           value={formData.profile_photo}
           onChange={handleChange}
         />
-        {/* <label id="edit-profile-content-div" htmlFor="sexuality_id">Sexuality:</label>
-      <input
-        id="sexuality-edit-input"
-        type="text"
-        name="sexuality"
-        value={formData.sexuality}
-        onChange={handleChange}
-      />
-      <label id="edit-profile-content-div" htmlFor="pronoun_id">Pronouns:</label>
-      <input
-        id="pronoun-edit-input"
-        type="text"
-        name="pronoun"
-        value={formData.pronoun}
-        onChange={handleChange}
-      />
-      <label id="edit-profile-content-div" htmlFor="show_id">Show:</label>
-      <input
-        id="show-edit-input"
-        type="text"
-        name="show"
-        value={formData.show_id}
-        onChange={handleChange}
-      /> */}
         <button type="submit">Save Changes</button>
       </form>
     </div>

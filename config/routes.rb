@@ -12,31 +12,32 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
-  get '*path', to: 'fallback#index',
-  constraints: ->(req) { !req.xhr? && req.format.html? }
-#Signup
-  post '/signup', to: 'users#create'
+  get "*path", to: "fallback#index",
+               constraints: ->(req) { !req.xhr? && req.format.html? }
+  #Signup
+  post "/signup", to: "users#create"
 
-#Logged in
-get '/me', to: "users#show"
-post "/login", to: "sessions#create"
-#Logged out
-delete "/logout", to: "sessions#destroy"
+  #Logged in
+  get "/me", to: "users#show"
+  post "/login", to: "sessions#create"
+  #Logged out
+  delete "/logout", to: "sessions#destroy"
 
-#Users
-get '/users', to: "users#index"
+  #Users
+  get "/users", to: "users#index"
 
-#Search
-get "/users/:id", to: "users#search"
+  #Search
+  get "/users/:id", to: "users#search"
 
-#Pronouns
-get '/pronouns', to: "pronouns#index"
+  #Pronouns
+  get "/pronouns", to: "pronouns#index"
 
-#Profiles
-get'/profiles', to: "users#show"
-# get '/profiles', to: "profiles#index"
-get '/profiles/:id/edit', to: "profiles#update"
+  #Profiles
+  get "/profiles", to: "users#show"
+  # get '/profiles', to: "profiles#index"
+  get "/profiles/:id/edit", to: "profiles#update"
 
-#Shows
-get '/shows', to: "show#index"
+  #Shows
+  get "/shows", to: "shows#index"
+  get "/shows/:id", to: "shows#show_profiles"
 end

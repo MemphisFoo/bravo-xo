@@ -29,9 +29,13 @@ const history = useHistory()
     <div>
       <ul>
         <div id="profile-div">
-          <li id="profile-content-div">Username: {profile.user.username} ({profile.pronoun.preference})</li>
+          <span className="bg-gradient-to-br from-purple-500 to-pink-500 text-white">
+             Username: {profile.user.username} ({profile.pronoun.preference})
+             </span>
           <br />
-          <li id= "profile-content-div">Bio: "{profile.bio}"</li>
+          <span className="bg-gradient-to-br from-purple-500 to-pink-500 text-white">
+            Bio: "{profile.bio}"
+            </span>
           <br />
           <div id="profile-img">
             <img id="profile-img-div" src={profile.profile_photo} alt="" />
