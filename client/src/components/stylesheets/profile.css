@@ -17,7 +17,7 @@ code {
   flex-direction: column;
   width: 675px;
   border: 5px solid palevioletred;
-  background-color:blueviolet
+  background-color: blueviolet
 }
 
 #profile-img {
@@ -38,5 +38,5 @@ code {
 }
 
 #edit-btn {
-float:inline-end;
+  float: inline-end;
 }

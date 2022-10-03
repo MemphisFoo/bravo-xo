@@ -57,7 +57,7 @@ const LoginForm = ({ isLoggedIn, setIsLoggedIn, setCurrentUser }) => {
           <label htmlFor="remember" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Remember me</label>
         </div>
         <button type="submit" className="text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
-        Login
+          Login
         </button>
         <div className="text-sm font-medium text-white-500 dark:text-gray-300">
           Not registered? <a href="/signup" className="text-blue-700 hover:underline dark:text-blue-500">Create account</a>

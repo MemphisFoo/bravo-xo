@@ -14,10 +14,17 @@ function App() {
   const [pronouns, setPronouns] = useState([]);
   const [sexualities, setSexualities] = useState([]);
   const [shows, setShows] = useState([])
+  const [profiles, setProfiles] = useState([])
   const [isAuthenticated, setIsAuthenticated] = useState(null);
   const [currentUser, setCurrentUser] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [search, setSearch] = useState("")
+  // const [currentRoom, setCurrentRoom] = useState({
+	// 	chatroom: {},
+	// 	users: [],
+	// 	messages: [],
+	// })
+	// const [messages, setMessages] = useState(null)
 
 
   useEffect(() => {
@@ -34,20 +41,43 @@ function App() {
   }, []);
 
   // $Promise.all code
-  useEffect(() => {
-    getSelections()
-  }, []);
+  // useEffect(() => {
+  //   getSelections()
+  // }, []);
 
-  function getSelections() {
-    const urls = ["/pronouns", "/sexualities", "/shows"]
-    Promise.all(urls.map((url) => fetch(url)))
-      .then((r) => Promise.all(r.map((r) => r.json())))
-      .then((data) => {
-        setPronouns(data[0])
-        setSexualities(data[1])
-        setShows(data[2])
-      })
-  }
+  // function getSelections() {
+  //   const urls = ["/pronouns", "/sexualities", "/shows", "/profiles"]
+  //   Promise.all(urls.map((url) => fetch(url)))
+  //     .then((r) => Promise.all(r.map((r) => r.json())))
+  //     .then((data) => {
+  //       setPronouns(data[0])
+  //       setSexualities(data[1])
+  //       setShows(data[2])
+  //       setProfiles(data[3])
+  //     })
+  // }
+//  $ ACTIONCABLE FUNCTIONS
+  // function updateAppStateRoom(newRoom) {
+	// 	setCurrentRoom({
+	// 		...currentRoom,
+	// 		chatroom: newRoom,
+	// 		users: newRoom.users,
+	// 		messages: newRoom.messages,
+	// 	})
+	// 	setMessages(newRoom.messages)
+	// }
+
+	// function handleUpdateCurrentUser(user) {
+	// 	setCurrentUser(user)
+	// }
+
+	// function handleCurrentRoom(result) {
+	// 	return {
+	// 		chatroom: result.data.attributes,
+	// 		users: result.data.attributes.users.data,
+	// 		messages: result.data.attributes.messages,
+	// 	}
+	// }
 
   // function handleClick() {
   //   setShowProfiles(show.profiles)
@@ -55,6 +85,7 @@ function App() {
   // function handleLogin(currentUser) {
   //   setCurrentUser(currentUser)
   // }
+
   const history = { useHistory }
   const handleLogout = () => {
     fetch("/logout", { method: "DELETE" })
@@ -81,7 +112,7 @@ function App() {
           </Route>
           <Route exact path='/login'>
             <LoginForm className="bg-black" isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} setCurrentUser={setCurrentUser} handleLogout={handleLogout} />
-            <h1 className="bg-black">This is my login page</h1></Route>
+            <h1>This is my login page</h1></Route>
           <Route exact path='/signup'>
             <SignupForm setCurrentUser={setCurrentUser} />
             <h1>I'm signing up</h1>
@@ -90,7 +121,7 @@ function App() {
             <Profile />
           </Route>
           {currentUser && (<Route exact path="/profiles/:id/edit">
-            <EditProfileForm currentUser={currentUser} sexualities={sexualities} pronouns={pronouns} shows={shows} />
+            <EditProfileForm currentUser={currentUser} sexualities={sexualities} pronouns={pronouns} shows={shows} profiles={profiles} setProfiles={setProfiles} />
           </Route>)}
           {/* <Filter
             search={search}

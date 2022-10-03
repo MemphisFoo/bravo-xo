@@ -3,12 +3,11 @@ import React, { useState, useEffect } from "react";
 import { useParams } from 'react-router-dom'
 import './stylesheets/edit_profile.css';
 
-function EditProfileForm({ currentUser, pronouns, sexualities, shows }) {
-  const [profiles, setProfiles] = useState()
+function EditProfileForm({ currentUser}) {
   const profile = currentUser.profile;
-  // const [pronouns, setPronouns] = useState([]);
-  // const [sexualities, setSexualities] = useState([]);
-  // const [shows, setShows] = useState([])
+  const [pronouns, setPronouns] = useState([]);
+  const [sexualities, setSexualities] = useState([]);
+  const [shows, setShows] = useState([])
   const [formData, setFormData] = useState({
     username: profile.username,
     first_name: profile.first_name,
@@ -19,7 +18,23 @@ function EditProfileForm({ currentUser, pronouns, sexualities, shows }) {
     pronoun_id: profile.pronoun.preference,
     sexuality_id: profile.sexuality.choose,
   });
-  // console.log(formData)
+
+
+  useEffect(() => {
+    getSelections()
+    console.log(formData)
+  }, [])
+  
+  function getSelections() {
+    const urls = ["/pronouns", "/sexualities", "/shows"]
+    Promise.all(urls.map((url) => fetch(url)))
+      .then((r) => Promise.all(r.map((r) => r.json())))
+      .then((data) => {
+        setPronouns(data[0])
+        setSexualities(data[1])
+        setShows(data[2])
+      })
+  }
 
   // $ handling changes function to handle changes in form inputs
   const handleChange = (e) => {
@@ -29,16 +44,16 @@ function EditProfileForm({ currentUser, pronouns, sexualities, shows }) {
     });
   };
   // $ function to update the profiles in the PATCH
-  function onUpdateProfile(updatedProfile) {
-    const updatedProfileArray = profiles.map((profile) => {
-      if (profile.id === updatedProfile.id) {
-        return updatedProfile;
-      } else {
-        return profiles;
-      }
-    });
-    setProfiles(updatedProfileArray)
-  }
+  // function onUpdateProfile(updatedProfile) {
+  //   const updatedProfileArray = profiles.map((profile) => {
+  //     if (profile.id === updatedProfile.id) {
+  //       return updatedProfile;
+  //     } else {
+  //       return profiles;
+  //     }
+  //   });
+  //   setProfiles(updatedProfileArray)
+  // }
 
   const { id } = useParams()
   // $ PATCH for updating profile
@@ -53,7 +68,8 @@ function EditProfileForm({ currentUser, pronouns, sexualities, shows }) {
     })
       .then((r) => r.json())
       .then((updatedProfile) => {
-        onUpdateProfile(updatedProfile);
+        // onUpdateProfile(updatedProfile);
+      console.log(updatedProfile)
       });
   }
   // console.log(sexualities)
@@ -139,7 +155,8 @@ function EditProfileForm({ currentUser, pronouns, sexualities, shows }) {
           value={formData.profile_photo}
           onChange={handleChange}
         />
-        <button type="submit">Save Changes</button>
+        <button className="text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2" 
+        type="submit">Save Changes</button>
       </form>
     </div>
   )
