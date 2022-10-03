@@ -3,27 +3,27 @@ import React, { useState, useEffect } from "react";
 import { useParams } from 'react-router-dom'
 import './stylesheets/edit_profile.css';
 
-function EditProfileForm({ currentUser}) {
-  const profile = currentUser.profile;
+function EditProfileForm({ currentUser }) {
+  const [profile, setProfile] = useState(currentUser.profile);
+  // console.log(profile)
   const [pronouns, setPronouns] = useState([]);
   const [sexualities, setSexualities] = useState([]);
   const [shows, setShows] = useState([])
   const [formData, setFormData] = useState({
-    username: profile.username,
     first_name: profile.first_name,
     last_name: profile.last_name,
     profile_photo: profile.profile_photo,
     bio: profile.bio,
-    show_id: parseInt(profile.show.id),
+    show_id: profile.show.id,
     pronoun_id: profile.pronoun.id,
     sexuality_id: profile.sexuality.id,
   });
-
+  // console.log(formData)
 
   useEffect(() => {
     getSelections()
   }, [])
-  
+
   function getSelections() {
     const urls = ["/pronouns", "/sexualities", "/shows"]
     Promise.all(urls.map((url) => fetch(url)))
@@ -39,10 +39,10 @@ function EditProfileForm({ currentUser}) {
   const handleChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: parseInt(e.target.value),
+      [e.target.name]: e.target.value,
     });
-  console.log(formData)
-};
+    // console.log(formData)
+  };
   // $ function to update the profiles in the PATCH
   // function onUpdateProfile(updatedProfile) {
   //   const updatedProfileArray = profiles.map((profile) => {
@@ -59,7 +59,17 @@ function EditProfileForm({ currentUser}) {
   // $ PATCH for updating profile
   function handleProfileUpdate(e) {
     e.preventDefault();
-    fetch(`/profiles/${id}`, {
+    const formDataBody = {
+      first_name: formData.first_name,
+      last_name: formData.last_name,
+      profile_photo: formData.profile_photo,
+      bio: formData.bio,
+      show_id: parseInt(formData.show_id),
+      pronoun_id: parseInt(formData.pronoun_id),
+      sexuality_id: parseInt(formData.sexuality_id)
+    }
+    console.log(formDataBody)
+    fetch(`/profiles/${profile.id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json"
@@ -69,13 +79,10 @@ function EditProfileForm({ currentUser}) {
       .then((r) => r.json())
       .then((updatedProfile) => {
         // onUpdateProfile(updatedProfile);
-      console.log(updatedProfile)
+        setProfile(updatedProfile)
       });
   }
-  // console.log(sexualities)
-  // console.log(pronouns)
-  // console.log(shows)
-
+console.log(profile)
   const sexualityOptions = sexualities.map((sexuality) => {
     return (
       <option key={sexuality.id} value={sexuality.id}>
@@ -131,19 +138,19 @@ function EditProfileForm({ currentUser}) {
           <label>
             Sexuality:&nbsp; &nbsp;
           </label>
-          <select value={profile.sexuality.id} name="sexuality_id" onChange={handleChange}>
+          <select value={formData.sexuality_id} name="sexuality_id" onChange={handleChange}>
             {sexualityOptions}
           </select>
           <label>
             Pronouns:&nbsp; &nbsp;
           </label>
-          <select value={profile.pronoun.id} name="pronoun_id" onChange={handleChange}>
+          <select value={formData.pronoun_id} name="pronoun_id" onChange={handleChange}>
             {pronounOptions}
           </select>
           <label>
             Show:&nbsp; &nbsp;
           </label>
-          <select value={profile.show.id} name="show_id" onChange={handleChange}>
+          <select value={formData.show_id} name="show_id" onChange={handleChange}>
             {showOptions}
           </select>
         </div>
@@ -155,8 +162,8 @@ function EditProfileForm({ currentUser}) {
           value={formData.profile_photo}
           onChange={handleChange}
         />
-        <button className="text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2" 
-        type="submit">Save Changes</button>
+        <button className="text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
+          type="submit">Save Changes</button>
       </form>
     </div>
   )
