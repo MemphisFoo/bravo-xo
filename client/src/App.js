@@ -121,7 +121,7 @@ function App() {
             <Profile />
           </Route>
           {currentUser && (<Route exact path="/profiles/:id/edit">
-            <EditProfileForm currentUser={currentUser} sexualities={sexualities} pronouns={pronouns} shows={shows} profiles={profiles} setProfiles={setProfiles} />
+            <EditProfileForm currentUser={currentUser} sexualities={sexualities} pronouns={pronouns} shows={shows} />
           </Route>)}
           {/* <Filter
             search={search}

@@ -14,15 +14,14 @@ function EditProfileForm({ currentUser}) {
     last_name: profile.last_name,
     profile_photo: profile.profile_photo,
     bio: profile.bio,
-    show_id: profile.show.title,
-    pronoun_id: profile.pronoun.preference,
-    sexuality_id: profile.sexuality.choose,
+    show_id: parseInt(profile.show.id),
+    pronoun_id: profile.pronoun.id,
+    sexuality_id: profile.sexuality.id,
   });
 
 
   useEffect(() => {
     getSelections()
-    console.log(formData)
   }, [])
   
   function getSelections() {
@@ -34,15 +33,16 @@ function EditProfileForm({ currentUser}) {
         setSexualities(data[1])
         setShows(data[2])
       })
-  }
+  };
 
   // $ handling changes function to handle changes in form inputs
   const handleChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value,
+      [e.target.name]: parseInt(e.target.value),
     });
-  };
+  console.log(formData)
+};
   // $ function to update the profiles in the PATCH
   // function onUpdateProfile(updatedProfile) {
   //   const updatedProfileArray = profiles.map((profile) => {
@@ -131,19 +131,19 @@ function EditProfileForm({ currentUser}) {
           <label>
             Sexuality:&nbsp; &nbsp;
           </label>
-          <select value={profile.sexuality.id} onChange={handleChange}>
+          <select value={profile.sexuality.id} name="sexuality_id" onChange={handleChange}>
             {sexualityOptions}
           </select>
           <label>
             Pronouns:&nbsp; &nbsp;
           </label>
-          <select value={profile.pronoun.id} onChange={handleChange}>
+          <select value={profile.pronoun.id} name="pronoun_id" onChange={handleChange}>
             {pronounOptions}
           </select>
           <label>
             Show:&nbsp; &nbsp;
           </label>
-          <select value={profile.show.id} onChange={handleChange}>
+          <select value={profile.show.id} name="show_id" onChange={handleChange}>
             {showOptions}
           </select>
         </div>
