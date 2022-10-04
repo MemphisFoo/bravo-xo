@@ -39,5 +39,6 @@ Rails.application.routes.draw do
 
   #Shows
   get "/shows", to: "shows#index"
-  get "/shows/:id", to: "shows#show_profiles"
+  # get "/shows/:id/users", to: "shows#show_profiles"
+  get "/shows/:id", to: "shows#show"
 end
