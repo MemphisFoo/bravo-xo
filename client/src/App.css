@@ -1,8 +1,11 @@
 .App {
-  text-align: center; color:white;
+  display: flex;
+  text-align: center; 
+  color: black;
   align-items: center;
   background-image: url("https://24wallpapers.com/app-gateway/wallpaper-uploads/wallpapers/31_03_2022/1648721082695_3.jpg");
 }
+
 
 .App-logo {
   height: 40vmin;

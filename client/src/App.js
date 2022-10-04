@@ -130,7 +130,7 @@ function App() {
             <Shows shows={shows} />
           </Route>
           <Route exact path="/shows/:id">
-            <ShowUsers shows={shows} showProfiles={showProfiles} setShowProfiles={setShowProfiles} />
+            <ShowUsers shows={shows} />
           </Route>
         </Switch>
       </div>

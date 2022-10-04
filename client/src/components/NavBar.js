@@ -10,7 +10,7 @@ function NavBar({ handleLogout, isLoggedIn, currentUser }) {
   function handleClick() {
     history.push("/")
   }
-
+console.log(currentUser)
   return (
     <div id="navbar">
       <img id="navbar-logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Bravo_TV_%282017_Logo%29.png/793px-Bravo_TV_%282017_Logo%29.png?20170210001612" alt=""
