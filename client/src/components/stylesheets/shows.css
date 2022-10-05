@@ -1,3 +1,8 @@
-#body {
-background-image: "https://ak.picdn.net/shutterstock/videos/1041242026/thumb/1.jpg?ip=x480"
+#body {display: flex;
+    align-items: center;
+    
+}
+
+#show-button {
+    align-items: center;
 }

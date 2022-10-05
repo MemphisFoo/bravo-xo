@@ -9,6 +9,12 @@ class ProfilesController < ApplicationController
     render json: profiles, status: :ok
   end
 
+  def create
+    #binding.break
+    profile = Profile.new(full_params)
+    render json: profile, status: :created
+  end
+
   def update
     # binding.break
     profile = Profile.find(params[:id])

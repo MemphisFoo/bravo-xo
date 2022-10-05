@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   resources :messages
-  resources :chatrooms
+  resources :conversations do
+    resources :messages
+  end
   resources :shows
   resources :profiles
   resources :pronouns
@@ -33,11 +35,13 @@ Rails.application.routes.draw do
   get "/pronouns", to: "pronouns#index"
 
   #Profiles
-  get "/profiles", to: "users#show"
+  get "/profiles/:id", to: "users#show"
   # get '/profiles', to: "profiles#index"
+  # get "/profiles/create", to: "profiles#create"
   get "/profiles/:id/edit", to: "profiles#update"
 
   #Shows
   get "/shows", to: "shows#index"
-  get "/shows/:id", to: "shows#show_profiles"
+  # get "/shows/:id/users", to: "shows#show_profiles"
+  get "/shows/:id", to: "shows#show"
 end

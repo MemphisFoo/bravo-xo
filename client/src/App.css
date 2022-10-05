@@ -1,8 +1,11 @@
 .App {
-  text-align: center;
-  background-image: url("https://ak.picdn.net/shutterstock/videos/1041242026/thumb/1.jpg?ip=x480");
-  
+  display: flex;
+  text-align: center; 
+  color: black;
+  align-items: center;
+  background-image: url("https://24wallpapers.com/app-gateway/wallpaper-uploads/wallpapers/31_03_2022/1648721082695_3.jpg");
 }
+
 
 .App-logo {
   height: 40vmin;
@@ -16,14 +19,12 @@
 }
 
 .App-header {
-  background-color: black;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: black;
 }
 
 .App-link {

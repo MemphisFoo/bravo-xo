@@ -9,14 +9,14 @@ class ShowsController < ApplicationController
     render json: show, status: :ok
   end
 
-  def show_profiles
-    show_profiles = Show.find(params[:profile])
-    render json: show_profiles, serializer: ShowSerializer
-  end
+  # def show_profiles
+  #   show_profiles = Show.find(params[:profile])
+  #   render json: show_profiles, serializer: ShowSerializer
+  # end
 
   private
 
-  def profile_params
-    params.permit(:profile, :title)
-  end
+  # def profile_params
+  #   params.permit(:profile, :title)
+  # end
 end

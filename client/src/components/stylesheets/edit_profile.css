@@ -15,9 +15,10 @@
   #edit-profile-div {
     display: flex;
     flex-direction: column;
-    width: 675px;
+    width: 800px;
     border: 5px solid palevioletred;
-    background-color:blueviolet
+    background-color:blueviolet;
+    color:black;
   }
   
   #edit-profile-img {
