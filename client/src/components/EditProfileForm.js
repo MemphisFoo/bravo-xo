@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useParams, useHistory } from 'react-router-dom'
 import './stylesheets/edit_profile.css';
 
-function EditProfileForm({ currentUser, shows, setShows, pronouns, setPronouns, sexualities, setSexualities }) {
+function EditProfileForm({ currentUser, shows, pronouns, sexualities }) {
   const [profile, setProfile] = useState(currentUser.profile);
   // console.log(profile)
   // const [pronouns, setPronouns] = useState([]);
@@ -69,7 +69,7 @@ function EditProfileForm({ currentUser, shows, setShows, pronouns, setPronouns, 
       pronoun_id: parseInt(formData.pronoun_id),
       sexuality_id: parseInt(formData.sexuality_id)
     }
-    // console.log(formDataBody)
+    console.log(formDataBody)
     fetch(`/profiles/${profile.id}`, {
       method: "PATCH",
       headers: {
@@ -164,7 +164,7 @@ console.log(profile)
           onChange={handleChange}
         />
         <button className="text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
-          onClick={() => { history.push(`/profile/${currentUser.profile.id}`) }} type="submit">Save Changes</button>
+         type="submit">Save Changes</button>
       </form>
     </div>
   )

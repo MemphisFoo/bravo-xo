@@ -6,10 +6,10 @@ import reportWebVitals from './reportWebVitals';
 import 'flowbite'
 import actionCable from 'actioncable'
 
-const cableApp={}
+// const cableApp={}
 
-cableApp.cable=actionCable.createConsumer('ws://localhost:3000/cable')
-console.log(cableApp)
+// cableApp.cable=actionCable.createConsumer('ws://localhost:3000/cable')
+// console.log(cableApp)
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

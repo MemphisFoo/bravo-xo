@@ -33,7 +33,7 @@ Rails.application.routes.draw do
   get "/pronouns", to: "pronouns#index"
 
   #Profiles
-  get "/profiles", to: "users#show"
+  get "/profiles/:id", to: "users#show"
   # get '/profiles', to: "profiles#index"
   get "/profiles/:id/edit", to: "profiles#update"
 

@@ -1,7 +1,7 @@
 import { Button } from 'flowbite-react';
 import React, { useState, useEffect } from 'react';
 import "./stylesheets/profile.css";
-import { useParams, Link } from 'react-router-dom';
+import { useParams} from 'react-router-dom';
 // import EditProfileForm from "./EditProfileForm"
 import { useHistory } from 'react-router-dom';
 
@@ -38,9 +38,9 @@ function Profile() {
           <p>Sexuality: {profile.sexuality.choose}</p>
           <p>Show: {profile.show.title}</p>
           <div className="flex flex-wrap gap-2">
-            <Link className="route-link" to="/profiles/:id/edit">
-              <Button>Edit</Button>
-            </Link>
+            
+              <Button onClick={handleClick}>Edit</Button>
+          
           </div>
           </div>
         </div>

@@ -117,7 +117,7 @@ function App() {
             <SignupForm setCurrentUser={setCurrentUser} />
             <h1>I'm signing up</h1>
           </Route>
-          <Route exact path="/profile/:id">
+          <Route exact path="/profiles/:id">
             <Profile />
           </Route>
           {currentUser && (<Route exact path="/profiles/:id/edit">
