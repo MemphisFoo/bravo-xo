@@ -45,7 +45,7 @@ const SignupForm = ({ setCurrentUser }) => {
     }).then((res) => {
       if (res.ok) {
         res.json().then((user) => {
-          setCurrentUser(user); history.push('/profile')
+          setCurrentUser(user); history.push('/profiles/:id')
         });
       } else {
         res.json().then((errors) => {

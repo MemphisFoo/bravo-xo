@@ -3,6 +3,7 @@ class UsersController < ApplicationController
     user = User.create(user_params)
     if user.valid?
       session[:user_id] = user.id
+      Profile.create(user_id: user.id, first_name: "", last_name: "", profile_photo: "", bio: "", sexuality_id: 1, show_id: 1, pronoun_id: 1)
       render json: user, status: :created
     else
       render json: user.errors.full_messages, status: :unprocessable_entity
