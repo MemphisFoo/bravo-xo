@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 // import {Label, TextInput} from 'flowbite-react'
 
-const SignupForm = ({ setCurrentUser, isLoggedIn, setIsLoggedIn }) => {
+const SignupForm = ({ setCurrentUser, setIsLoggedIn }) => {
   const [formData, setFormData] = useState({
     username: "",
     password: "",
