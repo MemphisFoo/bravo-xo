@@ -1,0 +1,2 @@
+class ImageTable < ApplicationRecord
+end

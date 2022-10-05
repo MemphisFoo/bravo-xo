@@ -6,12 +6,13 @@ class User < ApplicationRecord
 
   # has_many :messages
   # has_many :conversations, through: :messages
-  # has_one_attached :image
+
   # belongs_to :pronoun
   # belongs_to :sexuality
   # belongs_to :category
   # has_one :pronoun
   # has_one :sexuality
+  # has_one_attached :image
   has_secure_password
 
   validates :email, presence: true, uniqueness: true

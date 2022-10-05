@@ -1,0 +1,2 @@
+class ImageTablesController < ApplicationController
+end

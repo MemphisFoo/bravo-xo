@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :image_tables
   resources :messages
   resources :conversations do
     resources :messages
