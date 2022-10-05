@@ -8,4 +8,5 @@ class UserSerializer < ActiveModel::Serializer
   # end
   has_one :profile
   # has_many :conversations
+  # has_many :chatrooms
 end
