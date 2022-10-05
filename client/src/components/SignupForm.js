@@ -7,14 +7,15 @@ const SignupForm = ({ setCurrentUser }) => {
     username: "",
     password: "",
     email: "",
-    image: null
+    // image: null
+    // profile: ""
   });
-  const handleImage = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.files[0],
-    });
-  };
+  // const handleImage = (e) => {
+  //   setFormData({
+  //     ...formData,
+  //     [e.target.name]: e.target.files[0],
+  //   });
+  // };
 
   const handleChange = (e) => {
     setFormData({
@@ -26,25 +27,25 @@ const SignupForm = ({ setCurrentUser }) => {
   function handleSubmit(e) {
     e.preventDefault();
 
-    const data = new FormData()
-    data.append('username', formData.username)
-    data.append('email', formData.email)
-    data.append('password', formData.password)
-    data.append('image', formData.image)
+    // const data = new FormData()
+    // data.append('username', formData.username)
+    // data.append('email', formData.email)
+    // data.append('password', formData.password)
+    // data.append('image', formData.image)
 
 
-    // const userCreds = { ...formData };
+    const userCreds = { ...formData };
 
     fetch("/users", {
       method: "POST",
-      // headers: {
-      //   "Content-Type": "application/json",
-      // },
-      body: data,
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(userCreds),
     }).then((res) => {
       if (res.ok) {
         res.json().then((user) => {
-          setCurrentUser(user); history.push('/profile')
+          setCurrentUser(user); history.push('/me')
         });
       } else {
         res.json().then((errors) => {
@@ -83,7 +84,7 @@ const SignupForm = ({ setCurrentUser }) => {
             onChange={handleChange}
           />
         </div>
-        <div>
+        {/* <div>
           <label htmlFor="image" className="text-purple-500">Upload Photo:</label>
           <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-black bg-opacity-99 dark:bg-gray-900 rounded-md group-hover:bg-opacity-0" >
             <input
@@ -94,7 +95,7 @@ const SignupForm = ({ setCurrentUser }) => {
               onChange={handleImage}
             />
           </span>
-        </div>
+        </div> */}
         <button type="submit" className="text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Submit</button>
       </form>
     </div>

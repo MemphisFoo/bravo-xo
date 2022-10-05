@@ -69,7 +69,7 @@ function EditProfileForm({ currentUser, shows, pronouns, sexualities }) {
       pronoun_id: parseInt(formData.pronoun_id),
       sexuality_id: parseInt(formData.sexuality_id)
     }
-    console.log(formDataBody)
+    // console.log(formDataBody)
     fetch(`/profiles/${profile.id}`, {
       method: "PATCH",
       headers: {
@@ -83,7 +83,7 @@ function EditProfileForm({ currentUser, shows, pronouns, sexualities }) {
         setProfile(updatedProfile)
       });
   }
-console.log(profile)
+// console.log(profile)
   const sexualityOptions = sexualities.map((sexuality) => {
     return (
       <option key={sexuality.id} value={sexuality.id}>
