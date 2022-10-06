@@ -115,7 +115,7 @@ function App() {
             {/* <h1>Welcome, {currentUser.username}!</h1> */}
             </Route>
           <Route exact path='/signup'>
-            <SignupForm setCurrentUser={setCurrentUser} />
+            <SignupForm setCurrentUser={setCurrentUser} setIsLoggedIn={setIsLoggedIn} />
             <h1>I'm signing up</h1>
           </Route>
           <Route exact path="/profiles/:id">

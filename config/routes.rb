@@ -40,6 +40,7 @@ Rails.application.routes.draw do
   # get '/profiles', to: "profiles#index"
   # get "/profiles/create", to: "profiles#create"
   get "/profiles/:id/edit", to: "profiles#update"
+  post "profiles/:id/", to: "profiles#create"
 
   #Shows
   get "/shows", to: "shows#index"

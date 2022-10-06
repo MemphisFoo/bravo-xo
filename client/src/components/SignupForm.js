@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 // import {Label, TextInput} from 'flowbite-react'
 
-const SignupForm = ({ setCurrentUser }) => {
+const SignupForm = ({ setCurrentUser, setIsLoggedIn }) => {
   const [formData, setFormData] = useState({
     username: "",
     password: "",
@@ -23,8 +23,8 @@ const SignupForm = ({ setCurrentUser }) => {
       [e.target.name]: e.target.value,
     });
   };
-  const history = { useHistory }
-  function handleSubmit(e) {
+  const history = useHistory ()
+  const handleSubmit = (e) => {
     e.preventDefault();
 
     const data = new FormData()
@@ -46,7 +46,8 @@ const SignupForm = ({ setCurrentUser }) => {
     }).then((res) => {
       if (res.ok) {
         res.json().then((user) => {
-          setCurrentUser(user); history.push('/profiles/:id')
+          setCurrentUser(user); history.push('/')
+          setIsLoggedIn(true)
         });
       } else {
         res.json().then((errors) => {
