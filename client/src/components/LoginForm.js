@@ -42,7 +42,7 @@ const LoginForm = ({ isLoggedIn, setIsLoggedIn, setCurrentUser }) => {
   return (
     <div className="p-4 w-full max-w-sm bg-black rounded-lg border border-purple-500 shadow-md sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
       <form onSubmit={handleSubmit} className="space-y-6" action="#">
-        <h5 className="text-xl font-medium text-white dark:text-white">Enter the Bravo-verse!</h5>
+        {/* <h5 className="text-xl font-medium text-white dark:text-white">Enter the Bravo-verse!</h5> */}
         <div>
           <label htmlFor="username" className="block mb-2 text-sm font-medium text-purple-500 dark:text-purple-500">Username</label>
           <input type="username" name="username" id="username" value={formData.username} onChange={handleChange} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required />
@@ -60,7 +60,7 @@ const LoginForm = ({ isLoggedIn, setIsLoggedIn, setCurrentUser }) => {
         <button type="submit" className="text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
           Login
         </button>
-        <div className="text-sm font-medium text-white-500 dark:text-gray-300">
+        <div className="text-sm font-medium text-purple-500 dark:text-gray-300">
           Not registered? <a href="/signup" className="text-blue-700 hover:underline dark:text-blue-500">Create account</a>
         </div>
       </form>

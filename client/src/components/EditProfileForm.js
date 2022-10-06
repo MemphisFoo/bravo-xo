@@ -110,53 +110,58 @@ function EditProfileForm({ currentUser, shows, pronouns, sexualities }) {
   })
 
   return (
-    <div>
-      <form id="edit-profile-div" onSubmit={handleProfileUpdate}>
-        <label id="edit-profile-content-div" htmlFor="first_name">First Name:</label>
+    <div className="w-full">
+    <div className="flex justify-center">
+    <div className=" p-4 w-full bg-black rounded-lg border border-purple-500 shadow-md sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
+      <form className="space-y-6" onSubmit={handleProfileUpdate}>
+        <label className="block mb-2 text-xl font-medium text-purple-500 dark:text-purple-500" htmlFor="first_name">First Name:</label>
         <input
           id="first_name-edit-input"
           type="text"
           name="first_name"
           value={formData.first_name}
           onChange={handleChange}
+          className="bg-gray-50 border border-gray-300 text-gray-900 text-l rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
         />
-        <label id="edit-profile-content-div" htmlFor="last_name">Last Name:</label>
+        <label className="block mb-2 text-xl font-medium text-purple-500 dark:text-purple-500" htmlFor="last_name">Last Name:</label>
         <input
           id="last_name-edit-input"
           type="text"
           name="last_name"
           value={formData.last_name}
           onChange={handleChange}
+          className="bg-gray-50 border border-gray-300 text-gray-900 text-l rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
         />
-        <label id="edit-profile-content-div" htmlFor="bio">Bio:</label>
+        <label className="block mb-2 text-xl font-large text-purple-500 dark:text-purple-500" htmlFor="bio">Bio:</label>
         <input
           id="bio-edit-input"
           type="text"
           name="bio"
           value={formData.bio}
           onChange={handleChange}
+          className="bg-gray-50 border border-gray-300 text-gray-900 text-l rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
         />
         <div>
-          <label>
+          <label className="block mb-2 text-xl font-large text-pink-500 dark:text-purple-500">
             Sexuality:&nbsp; &nbsp;
           </label>
           <select value={formData.sexuality_id} name="sexuality_id" onChange={handleChange}>
             {sexualityOptions}
           </select>
-          <label>
+          <label className="block mb-2 text-xl font-large text-pink-500 dark:text-pink-500">
             Pronouns:&nbsp; &nbsp;
           </label>
           <select value={formData.pronoun_id} name="pronoun_id" onChange={handleChange}>
             {pronounOptions}
           </select>
-          <label>
+          <label className="block mb-2 text-xl font-large text-pink-500 dark:text-purple-500">
             Show:&nbsp; &nbsp;
           </label>
           <select value={formData.show_id} name="show_id" onChange={handleChange}>
             {showOptions}
           </select>
         </div>
-        <label id="edit-profile-img" htmlFor="profile_photo">Profile Photo:</label>
+        <label className="block mb-2 text-xl font-large text-pink-500 dark:text-purple-500" htmlFor="profile_photo">Profile Photo:</label>
         <input
           id="profile_photo-edit-input"
           type="text"
@@ -167,6 +172,8 @@ function EditProfileForm({ currentUser, shows, pronouns, sexualities }) {
         <button className="text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
          type="submit">Save Changes</button>
       </form>
+    </div>
+    </div>
     </div>
   )
 };

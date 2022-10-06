@@ -21,8 +21,8 @@ function onShow(show) {
     )
 
 
-    return (
-        <div className="flex justify-center">
+    return (<div className="flex justify-center">
+        <div className="flex items-center">
         <div className="flex flex-row items-center">
         <div>
             {showTitles}
@@ -30,6 +30,7 @@ function onShow(show) {
         {profiles &&
         <ShowUsers profiles={profiles} />
         }
+        </div>
         </div>
         </div>
     )
