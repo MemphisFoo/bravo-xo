@@ -10,6 +10,7 @@ function EditProfileForm({ currentUser, shows, pronouns, sexualities }) {
   // const [sexualities, setSexualities] = useState([]);
   // const [shows, setShows] = useState([])
   let history = useHistory()
+
   const [formData, setFormData] = useState({
     first_name: profile.first_name,
     last_name: profile.last_name,
@@ -18,6 +19,7 @@ function EditProfileForm({ currentUser, shows, pronouns, sexualities }) {
     show_id: profile.show.id,
     pronoun_id: profile.pronoun.id,
     sexuality_id: profile.sexuality.id,
+    image: null
   });
   // console.log(formData)
 
@@ -44,6 +46,13 @@ function EditProfileForm({ currentUser, shows, pronouns, sexualities }) {
     });
     // console.log(formData)
   };
+  // $ hanlding image changes in the profile form
+  const handleImage = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.files[0],
+    });
+  };
   // $ function to update the profiles in the PATCH
   // function onUpdateProfile(updatedProfile) {
   //   const updatedProfileArray = profiles.map((profile) => {
@@ -56,7 +65,9 @@ function EditProfileForm({ currentUser, shows, pronouns, sexualities }) {
   //   setProfiles(updatedProfileArray)
   // }
 
+  //$ useParams
   const { id } = useParams()
+
   // $ PATCH for updating profile
   function handleProfileUpdate(e) {
     e.preventDefault();
@@ -80,10 +91,32 @@ function EditProfileForm({ currentUser, shows, pronouns, sexualities }) {
       .then((r) => r.json())
       .then((updatedProfile) => {
         // onUpdateProfile(updatedProfile);
-        setProfile(updatedProfile)
+        setProfile(updatedProfile);
+        history.push(`/profiles/${profile.id}`)
       });
   }
-// console.log(profile)
+
+  function handleProfilePicSubmit(e) {
+    e.preventDefault();
+    const data = new FormData()
+    data.append('first_name', formData.first_name)
+    data.append('last_name', formData.last_name)
+    data.append('profile_photo', formData.profile_photo)
+    data.append('bio', formData.bio)
+    data.append('show_id', formData.show_id)
+    data.append('pronoun_id', formData.pronoun_id)
+    data.append('sexuality_id', formData.sexuality_id)
+    data.append('image', formData.image)
+
+    fetch(`/profiles/${profile.id}`, {
+      method: "POST",
+      body: data,
+    })
+      .then((res) => res.json())
+      .then((data) => setProfile(data));
+  };
+
+  // console.log(profile)
   const sexualityOptions = sexualities.map((sexuality) => {
     return (
       <option key={sexuality.id} value={sexuality.id}>
@@ -164,7 +197,22 @@ function EditProfileForm({ currentUser, shows, pronouns, sexualities }) {
           onChange={handleChange}
         />
         <button className="text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
-         type="submit">Save Changes</button>
+          type="submit">Save Changes</button>
+      </form>
+      <form id="edit-profile-div" onSubmit={handleProfilePicSubmit}>
+        <div>
+          <label htmlFor="image" className="text-purple-500">Upload Photo:</label>
+          <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-black bg-opacity-99 dark:bg-gray-900 rounded-md group-hover:bg-opacity-0" >
+            <input
+              className="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-white rounded-lg group bg-gradient-to-br from-purple-500 to-pink-500 group-hover:from-purple-500 group-hover:to-pink-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800"
+              id="name"
+              type="file"
+              name="image"
+              onChange={handleImage}
+            />
+          </span>
+        </div>
+        <button type="submit" className="text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Submit</button>
       </form>
     </div>
   )

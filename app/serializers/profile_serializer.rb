@@ -1,5 +1,5 @@
 class ProfileSerializer < ActiveModel::Serializer
-  attributes :id, :first_name, :last_name, :profile_photo, :bio, :sexuality, :show, :user, :pronoun
+  attributes :id, :first_name, :last_name, :profile_photo, :bio, :sexuality, :show, :user, :pronoun, :image_url
   # :image_url
 
   has_one :sexuality
