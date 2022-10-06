@@ -1,6 +1,6 @@
 class UserSerializer < ActiveModel::Serializer
   # include FastJsonapi::ObjectSerializer
-  attributes :id, :email, :username, :password_digest, :image_url
+  attributes :id, :email, :username, :password_digest
   # :image_url
 
   # attribute :chatrooms do |user|

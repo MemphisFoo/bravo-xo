@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :profile_photos
   resources :image_tables
   resources :messages
   resources :conversations do
@@ -46,4 +47,6 @@ Rails.application.routes.draw do
   get "/shows", to: "shows#index"
   # get "/shows/:id/users", to: "shows#show_profiles"
   get "/shows/:id", to: "shows#show"
+
+  # get "current_user_photos", to: "profile_photos#current_user_photos"
 end

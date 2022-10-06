@@ -5,12 +5,12 @@ import './stylesheets/edit_profile.css';
 
 function EditProfileForm({ currentUser, shows, pronouns, sexualities }) {
   const [profile, setProfile] = useState(currentUser.profile);
-  // console.log(profile)
+  console.log(profile)
   // const [pronouns, setPronouns] = useState([]);
   // const [sexualities, setSexualities] = useState([]);
   // const [shows, setShows] = useState([])
   let history = useHistory()
-
+// console.log(profile.id)
   const [formData, setFormData] = useState({
     first_name: profile.first_name,
     last_name: profile.last_name,
@@ -21,6 +21,10 @@ function EditProfileForm({ currentUser, shows, pronouns, sexualities }) {
     sexuality_id: profile.sexuality.id,
     image: null
   });
+
+  const [newFormData, setNewFormData] = useState({
+    image: null
+  })
   // console.log(formData)
 
   // useEffect(() => {
@@ -48,8 +52,8 @@ function EditProfileForm({ currentUser, shows, pronouns, sexualities }) {
   };
   // $ hanlding image changes in the profile form
   const handleImage = (e) => {
-    setFormData({
-      ...formData,
+    setNewFormData({
+      ...newFormData,
       [e.target.name]: e.target.files[0],
     });
   };
@@ -99,21 +103,22 @@ function EditProfileForm({ currentUser, shows, pronouns, sexualities }) {
   function handleProfilePicSubmit(e) {
     e.preventDefault();
     const data = new FormData()
-    data.append('first_name', formData.first_name)
-    data.append('last_name', formData.last_name)
-    data.append('profile_photo', formData.profile_photo)
-    data.append('bio', formData.bio)
-    data.append('show_id', formData.show_id)
-    data.append('pronoun_id', formData.pronoun_id)
-    data.append('sexuality_id', formData.sexuality_id)
-    data.append('image', formData.image)
+    // data.append('first_name', formData.first_name)
+    // data.append('last_name', formData.last_name)
+    // data.append('profile_photo', formData.profile_photo)
+    // data.append('bio', formData.bio)
+    // data.append('show_id', formData.show_id)
+    // data.append('pronoun_id', formData.pronoun_id)
+    // data.append('sexuality_id', formData.sexuality_id)
+    data.append('profile_id', profile.id)
+    data.append('image', newFormData.image)
 
-    fetch(`/profiles/${profile.id}`, {
+    fetch('/profile_photos', {
       method: "POST",
       body: data,
     })
       .then((res) => res.json())
-      .then((data) => setProfile(data));
+      history.push('/')
   };
 
   // console.log(profile)
@@ -188,14 +193,14 @@ function EditProfileForm({ currentUser, shows, pronouns, sexualities }) {
             {showOptions}
           </select>
         </div>
-        <label id="edit-profile-img" htmlFor="profile_photo">Profile Photo:</label>
+        {/* <label id="edit-profile-img" htmlFor="profile_photo">Profile Photo:</label>
         <input
           id="profile_photo-edit-input"
           type="text"
           name="profile_photo"
           value={formData.profile_photo}
           onChange={handleChange}
-        />
+        /> */}
         <button className="text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
           type="submit">Save Changes</button>
       </form>
@@ -205,7 +210,7 @@ function EditProfileForm({ currentUser, shows, pronouns, sexualities }) {
           <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-black bg-opacity-99 dark:bg-gray-900 rounded-md group-hover:bg-opacity-0" >
             <input
               className="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-white rounded-lg group bg-gradient-to-br from-purple-500 to-pink-500 group-hover:from-purple-500 group-hover:to-pink-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800"
-              id="name"
+              id="image"
               type="file"
               name="image"
               onChange={handleImage}
