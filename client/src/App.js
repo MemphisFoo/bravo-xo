@@ -99,6 +99,7 @@ function App() {
       });
   };
 
+
   // console.log(currentUser);
 
   return (
@@ -108,7 +109,6 @@ function App() {
         <Switch>
           <Route exact path='/'>
             {/* <h1>Welcome, {currentUser.username}!</h1> */}
-            <h2>Let's find your Bravo-mate</h2>
           </Route>
           <Route exact path='/login'>
             <LoginForm className="bg-black" isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} setCurrentUser={setCurrentUser} handleLogout={handleLogout} />
