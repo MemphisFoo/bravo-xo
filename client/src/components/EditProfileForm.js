@@ -80,7 +80,8 @@ function EditProfileForm({ currentUser, shows, pronouns, sexualities }) {
       .then((r) => r.json())
       .then((updatedProfile) => {
         // onUpdateProfile(updatedProfile);
-        setProfile(updatedProfile)
+        setProfile(updatedProfile);
+        history.push(`/profiles/${profile.id}`)
       });
   }
 // console.log(profile)
