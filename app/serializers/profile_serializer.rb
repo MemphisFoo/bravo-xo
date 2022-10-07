@@ -6,5 +6,5 @@ class ProfileSerializer < ActiveModel::Serializer
   has_one :show
   has_one :user
   has_one :pronoun
-  # has_one :profile_photo
+  has_one :profile_photo
 end

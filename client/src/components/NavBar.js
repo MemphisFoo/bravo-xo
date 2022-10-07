@@ -3,7 +3,7 @@ import { Link, useHistory } from "react-router-dom";
 import "./stylesheets/navbar.css"
 import { Dropdown, Avatar } from "flowbite-react";
 // import Filter from "./Filter.js"
-function NavBar({ handleLogout, isLoggedIn, currentUser }) {
+function NavBar({ handleLogout, isLoggedIn, currentUser, profileImage }) {
 
   let history = useHistory()
 
@@ -39,7 +39,7 @@ console.log(currentUser)
       </button>
         <div className="fixed right-10">
           <Dropdown
-            label={<Avatar alt="User settings" img={currentUser.profile.profile_photo} rounded={true} />}
+            label={<Avatar alt="User settings" img={profileImage} rounded={true} />}
             arrowIcon={false}
             inline={true}
           >

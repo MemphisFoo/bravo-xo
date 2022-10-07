@@ -15,7 +15,7 @@ class ProfilePhotosController < ApplicationController
   end
 
   def current_user_photos
-    photos = ProfilePhoto.where(user_id: params[:id])
+    photos = ProfilePhoto.where(profile_id: params[:id])
     if photos.exists?
       render json: photos.last, status: :ok
     else
