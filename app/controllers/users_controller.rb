@@ -3,7 +3,7 @@ class UsersController < ApplicationController
     user = User.create(user_params)
     if user.valid?
       session[:user_id] = user.id
-      Profile.create(user_id: user.id, first_name: "", last_name: "", profile_photo: "", bio: "", sexuality_id: 1, show_id: 1, pronoun_id: 1)
+      Profile.create(user_id: user.id, first_name: "", last_name: "", bio: "", sexuality_id: 1, show_id: 1, pronoun_id: 1)
       render json: user, status: :created
     else
       render json: user.errors.full_messages, status: :unprocessable_entity
@@ -36,7 +36,7 @@ class UsersController < ApplicationController
   private
 
   def full_params
-    params.permit(:first_name, :last_name, :username, :pronoun_id, :sexuality_id, :profile_photo, :bio, :password, :email, :password_confirmation)
+    params.permit(:first_name, :last_name, :username, :bio, :pronoun_id, :sexuality_id, :show_id, :password, :email, :password_confirmation)
   end
 
   def user_params
@@ -45,9 +45,5 @@ class UsersController < ApplicationController
 
   def user_search_params
     params.permit(:username, :first_name, :last_name)
-  end
-
-  def find_user
-    User.find(user_search_params)
   end
 end

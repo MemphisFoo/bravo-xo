@@ -11,7 +11,7 @@ class ProfilesController < ApplicationController
 
   def create
     #binding.break
-    profile = Profile.new(full_params)
+    profile = Profile.create(full_params)
     render json: profile, status: :created
   end
 
@@ -19,12 +19,18 @@ class ProfilesController < ApplicationController
     # binding.break
     profile = Profile.find(params[:id])
     profile.update!(full_params)
-    render json: profile, status: :accepted
+    render json: profile, serializer: ProfileWithoutPicSerializer
+  end
+
+  def update_image
+    profile = Profile.find(params[:id])
+    profile.update(image: params[:image])
+    render json: profile
   end
 
   private
 
   def full_params
-    params.permit(:first_name, :last_name, :show_id, :pronoun_id, :sexuality_id, :profile_photo, :bio)
+    params.permit(:first_name, :last_name, :show, :pronoun, :sexuality, :bio, :user)
   end
 end

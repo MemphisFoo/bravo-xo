@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :profile_photos
   resources :messages
   resources :conversations do
     resources :messages
@@ -39,7 +40,7 @@ Rails.application.routes.draw do
   # get '/profiles', to: "profiles#index"
   # get "/profiles/create", to: "profiles#create"
   get "/profiles/:id/edit", to: "profiles#update"
-
+  patch "/update_image", to: "profiles#update_image"
   #Shows
   get "/shows", to: "shows#index"
   # get "/shows/:id/users", to: "shows#show_profiles"
