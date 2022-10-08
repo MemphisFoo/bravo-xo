@@ -63,14 +63,17 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_04_162946) do
   create_table "profiles", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
-    t.text "profile_photo"
     t.text "bio"
-    t.integer "show_id"
-    t.integer "pronoun_id"
-    t.integer "sexuality_id"
-    t.integer "user_id"
+    t.bigint "show_id", null: false
+    t.bigint "pronoun_id", null: false
+    t.bigint "sexuality_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["pronoun_id"], name: "index_profiles_on_pronoun_id"
+    t.index ["sexuality_id"], name: "index_profiles_on_sexuality_id"
+    t.index ["show_id"], name: "index_profiles_on_show_id"
+    t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 
   create_table "pronouns", force: :cascade do |t|
@@ -101,4 +104,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_04_162946) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "profiles", "pronouns"
+  add_foreign_key "profiles", "sexualities"
+  add_foreign_key "profiles", "shows"
+  add_foreign_key "profiles", "users"
 end

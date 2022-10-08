@@ -3,12 +3,11 @@ class CreateProfiles < ActiveRecord::Migration[7.0]
     create_table :profiles do |t|
       t.string :first_name
       t.string :last_name
-      t.text :profile_photo
       t.text :bio
-      t.integer :show_id
-      t.integer :pronoun_id
-      t.integer :sexuality_id
-      t.integer :user_id
+      t.belongs_to :show, null: false, foreign_key: true
+      t.belongs_to :pronoun, null: false, foreign_key: true
+      t.belongs_to :sexuality, null: false, foreign_key: true
+      t.belongs_to :user, null: false, foreign_key: true
 
       t.timestamps
     end
