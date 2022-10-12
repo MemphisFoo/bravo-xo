@@ -12,15 +12,14 @@ import ShowUsers from "./components/ShowUsers";
 // import Filter from "./components/Filter"
 import EditProfileForm from "./components/EditProfileForm";
 function App() {
+  const [currentUser, setCurrentUser] = useState({profile:{},});
+  const [isAuthenticated, setIsAuthenticated] = useState(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [profiles, setProfiles] = useState([])
+  const [currentProfile, setCurrentProfile] = useState({});
   const [pronouns, setPronouns] = useState([]);
   const [sexualities, setSexualities] = useState([]);
   const [shows, setShows] = useState([]);
-  const [isAuthenticated, setIsAuthenticated] = useState(null);
-  const [currentUser, setCurrentUser] = useState({profile:{},});
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [currentProfile, setCurrentProfile] = useState({});
-  const [imageData, setImageData] = useState("");
-  const [profileData, setProfileData] = useState({})
 
   useEffect(() => {
     fetch("/me").then((r) => {
@@ -35,37 +34,56 @@ function App() {
     });
   }, []);
 
-  function handleImageUrl(image_url) {
-    const newProfObj = { ...currentProfile };
-    newProfObj.image_url = image_url;
-    setCurrentProfile(newProfObj);
+  useEffect (()=> {
+fetch("/profiles")
+.then((r) => r.json())
+.then(setProfiles)
+  }, [currentProfile])
+  // console.log(currentProfile)
+
+  function handleUpdateProfilePicUrl(profile_pic_url) {
+    const newProfileObj = {...currentProfile}
+    newProfileObj.profile_pic_url = profile_pic_url
+    setCurrentProfile(newProfileObj)
   }
 
-  function handleUpdateProfile(profileData) {
-    const newProfObj = { ...currentProfile };
-    (newProfObj.first_name = profileData.first_name)
-    (newProfObj.last_name = profileData.last_name)
-    (newProfObj.bio = profileData.bio)
-    (newProfObj.show_id = profileData.show.id)
-    (newProfObj.pronoun_id = profileData.pronoun.id)
-    (newProfObj.sexuality_id = profileData.sexuality.id)
-    (newProfObj.user_id = profileData.user.id)
+  function handleUpdateProfile(profileData){
+    const newProfileObj = {...currentProfile}
+    newProfileObj.first_name = profileData.first_name
+    newProfileObj.last_name = profileData.last_name
+    newProfileObj.bio = profileData.bio
+    newProfileObj.user_id = profileData.user_id
+    newProfileObj.show_id = profileData.show_id
+    newProfileObj.pronoun_id = profileData.pronoun_id
+    newProfileObj.sexuality_id = profileData.sexuality_id
+    setCurrentProfile(newProfileObj)
   }
 
-  function handleImgSubmit(e) {
-    e.preventDefault();
-    const pic = new FormData();
-    pic.append("image", imageData.image);
-    pic.append("id", currentProfile.id);
-    // pic.append('id', profile.id)
+  // function handleUpdateProfile(profileData) {
+  //   const newProfObj = { ...currentProfile };
+  //   (newProfObj.first_name = profileData.first_name)
+  //   (newProfObj.last_name = profileData.last_name)
+  //   (newProfObj.bio = profileData.bio)
+  //   (newProfObj.show_id = profileData.show.id)
+  //   (newProfObj.pronoun_id = profileData.pronoun.id)
+  //   (newProfObj.sexuality_id = profileData.sexuality.id)
+  //   (newProfObj.user_id = profileData.user.id)
+  // }
 
-    fetch("/update_image", {
-      method: "PATCH",
-      body: pic,
-    })
-      .then((res) => res.json())
-      .then((pic) => handleImageUrl(pic.image_url));
-  }
+  // function handleImgSubmit(e) {
+  //   e.preventDefault();
+  //   const pic = new FormData();
+  //   pic.append("image", imageData.image);
+  //   pic.append("id", currentProfile.id);
+  //   // pic.append('id', profile.id)
+
+  //   fetch("/update_image", {
+  //     method: "PATCH",
+  //     body: pic,
+  //   })
+  //     .then((res) => res.json())
+  //     .then((pic) => handleImageUrl(pic.image_url));
+  // }
 
   // $Promise.all code
   useEffect(() => {
@@ -129,8 +147,8 @@ function App() {
     <BrowserRouter>
       <NavBar
         className="App"
-        currentProfile={currentProfile}
-        imageData={imageData}
+        profile={currentProfile}
+        // imageData={imageData}
         handleLogout={handleLogout}
         isLoggedIn={isLoggedIn}
         currentUser={currentUser}
@@ -158,7 +176,7 @@ function App() {
             <Profile
               handleUpdateProfile={handleUpdateProfile}
               currentUser={currentUser}
-              currentProfile={currentProfile}
+              profile={currentProfile}
             />
           </Route>
           {currentUser && (
@@ -169,7 +187,7 @@ function App() {
                 pronouns={pronouns}
                 shows={shows}
                 handleUpdateProfile={handleUpdateProfile}
-                handleImgSubmit={handleImgSubmit}
+                handleUpdateProfilePicUrl={handleUpdateProfilePicUrl}
                 currentUser={currentUser}
               />
             </Route>

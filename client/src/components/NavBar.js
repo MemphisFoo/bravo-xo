@@ -3,23 +3,24 @@ import { Link, useHistory } from "react-router-dom";
 import "./stylesheets/navbar.css";
 import { Dropdown, Avatar } from "flowbite-react";
 // import Filter from "./Filter.js"
-function NavBar({ imageData, handleLogout, isLoggedIn, currentProfile, currentUser }) {
-  // const {
-  //   first_name,
-  //   last_name,
-  //   email,
-  //   bio,
-  //   user_id,
-  //   sexuality_id,
-  //   pronoun_id,
-  //   show_id,
-  // } = currentProfile;
+function NavBar({ profile, currentUser, isLoggedIn, handleLogout, }) {
+  const {
+    // first_name,
+    // last_name,
+    // email,
+    // bio,
+    // user_id,
+    // sexuality_id,
+    // pronoun_id,
+    // show_id,
+    profile_pic_url
+  } = profile;
   let history = useHistory();
 
   function handleClick() {
     history.push("/");
   }
-  console.log(currentUser);
+  // console.log(currentUser);
   return (
     <div id="navbar">
       <img
@@ -58,7 +59,7 @@ function NavBar({ imageData, handleLogout, isLoggedIn, currentProfile, currentUs
           <div className="fixed right-10">
             <Dropdown
               label={
-                <Avatar alt="User settings" img={imageData} rounded={true} />
+                <Avatar alt="User settings" img={profile_pic_url} rounded={true} />
               }
               arrowIcon={false}
               inline={true}
