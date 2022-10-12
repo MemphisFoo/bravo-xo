@@ -142,7 +142,7 @@ import "./stylesheets/edit_profile.css";
   // new EditProfileForm code
 
   function EditProfile({ onUpdateProfilePic, onUpdateProfile, profile, sexualities, pronouns, shows }) {
-    const { first_name, last_name, email, user_id, show_id, sexuality_id, pronoun_id } = profile
+    const { first_name, last_name, bio, user_id, show_id, sexuality_id, pronoun_id } = profile
   
     const [profileData, setProfileData] = useState({})
   
@@ -154,14 +154,14 @@ import "./stylesheets/edit_profile.css";
       setProfileData({
         first_name: first_name,
         last_name: last_name,
-        email: email,
+        bio: bio,
         user_id: user_id,
         show_id: show_id,
         sexuality_id: sexuality_id,
         pronoun_id: pronoun_id
 
       })
-    }, [profile, first_name, last_name, email, user_id, show_id, sexuality_id, pronoun_id])
+    }, [profile, first_name, last_name, user_id, show_id, sexuality_id, pronoun_id])
   
     function handleChange(e) {
       setProfileData({ ...profileData, [e.target.name]: e.target.value })

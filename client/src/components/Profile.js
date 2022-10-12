@@ -5,10 +5,11 @@ import { useParams } from "react-router-dom";
 // import EditProfileForm from "./EditProfileForm"
 import { useHistory } from "react-router-dom";
 
-function Profile({profile}) {
+function Profile({currentProfile}) {
   const history = useHistory();
-  const [profile_pic_url, first_name, last_name, bio, show_id, user_id, pronoun_id, sexuality_id ] = profile
+  const {profile_pic_url, first_name, last_name, bio, show_id, pronoun_id, sexuality_id } = currentProfile
   // // might need to put useEffect in a conditional in case currentUser is nil
+  const [profileData, setProfileData] = useState({})
   const { id } = useParams();
 
   // useEffect(() => {
@@ -20,6 +21,17 @@ function Profile({profile}) {
   // if (!profile) {
   //   return <div>loading...</div>;
   // }
+
+  useEffect(() => {
+    setProfileData({
+      first_name: first_name,
+      last_name: last_name,
+      show_id: show_id,
+      sexuality_id: sexuality_id,
+      pronoun_id: pronoun_id
+
+    })
+  }, [currentProfile, first_name, last_name, show_id, sexuality_id, pronoun_id])
 
   function handleClick() {
     history.push(`/profiles/${id}/edit`);
@@ -37,10 +49,10 @@ function Profile({profile}) {
           {first_name}
           {last_name}
         </p>
-        <p>Pronouns {pronoun_id.preference}</p>
+        <p>Pronouns {pronoun_id}</p>
         <p>Bio: "{bio}"</p>
-        <p>Sexuality: {sexuality_id.choose}</p>
-        <p>Show: {show_id.title}</p>
+        <p>Sexuality: {sexuality_id}</p>
+        <p>Show: {show_id}</p>
         <div className="flex flex-wrap gap-2">
           <Button onClick={handleClick}>Edit</Button>
         </div>

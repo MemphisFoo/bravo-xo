@@ -5,14 +5,14 @@ import { Dropdown, Avatar } from "flowbite-react";
 // import Filter from "./Filter.js"
 function NavBar({ profile, currentUser, isLoggedIn, handleLogout, }) {
   const {
-    // first_name,
-    // last_name,
-    // email,
-    // bio,
-    // user_id,
-    // sexuality_id,
-    // pronoun_id,
-    // show_id,
+    first_name,
+    last_name,
+    email,
+    bio,
+    user_id,
+    sexuality_id,
+    pronoun_id,
+    show_id,
     profile_pic_url
   } = profile;
   let history = useHistory();
