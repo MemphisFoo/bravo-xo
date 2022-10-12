@@ -22,7 +22,8 @@ function App() {
   const [shows, setShows] = useState([]);
 
   useEffect(() => {
-    fetch("/me").then((r) => {
+    fetch("/me")
+    .then((r) => {
       if (r.ok) {
         r.json().then((user) => {
           setCurrentUser(user);
@@ -176,13 +177,13 @@ fetch("/profiles")
             <Profile
               handleUpdateProfile={handleUpdateProfile}
               currentUser={currentUser}
-              profile={currentProfile}
+              currentProfile={currentProfile}
             />
           </Route>
           {currentUser && (
             <Route exact path="/profiles/:id/edit">
               <EditProfileForm
-                // currentProfile={currentProfile}
+                profile={currentProfile}
                 sexualities={sexualities}
                 pronouns={pronouns}
                 shows={shows}
