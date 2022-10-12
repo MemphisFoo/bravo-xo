@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useHistory } from 'react-router-dom';
 
 
-const LoginForm = ({ isLoggedIn, setIsLoggedIn, setCurrentUser }) => {
+const LoginForm = ({ isLoggedIn, setIsLoggedIn, setCurrentUser, setCurrentProfile }) => {
   const [formData, setFormData] = useState({
     username: "",
     password: "",
@@ -26,8 +26,10 @@ const LoginForm = ({ isLoggedIn, setIsLoggedIn, setCurrentUser }) => {
     }).then((res) => {
       if (res.ok) {
         res.json().then((user) => {
-          setCurrentUser(user); history.push('/')
+          setCurrentUser(user); 
+          setCurrentProfile(user.profile)
           setIsLoggedIn(true)
+          history.push('/')
           console.log(isLoggedIn)
           console.log(user)
         });

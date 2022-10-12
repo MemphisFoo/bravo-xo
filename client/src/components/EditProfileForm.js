@@ -17,8 +17,6 @@ import "./stylesheets/edit_profile.css";
 
 //   const [profileData, setProfileData] = useState({});
 
-  
-  
 //   function handleUpdateProfile(profileData) {
 //     const newProfObj = { ...currentProfile };
 //     (newProfObj.first_name = profileData.first_name)
@@ -137,68 +135,93 @@ import "./stylesheets/edit_profile.css";
 //     });
 //   };
 
-  // console.log(profile)
+// console.log(profile)
 
-  // new EditProfileForm code
+// new EditProfileForm code
 
-  function EditProfile({ onUpdateProfilePic, onUpdateProfile, profile, sexualities, pronouns, shows }) {
-    const { first_name, last_name, bio, user_id, show_id, sexuality_id, pronoun_id } = profile
-  
-    const [profileData, setProfileData] = useState({})
-  
-    const [profilePicData, setProfilePicData] = useState({
-      profile_pic: "",
+function EditProfileForm({
+  onUpdateProfilePicUrl,
+  onUpdateProfile,
+  profile,
+  sexualities,
+  pronouns,
+  shows,
+}) {
+  const {
+    first_name,
+    last_name,
+    bio,
+    user_id,
+    show_id,
+    sexuality_id,
+    pronoun_id,
+  } = profile;
+
+  const [profileData, setProfileData] = useState({});
+
+  const [profilePicData, setProfilePicData] = useState({
+    profile_pic: null,
+  });
+
+  useEffect(() => {
+    setProfileData({
+      first_name: first_name,
+      last_name: last_name,
+      bio: bio,
+      user_id: user_id,
+      show_id: show_id,
+      sexuality_id: sexuality_id,
+      pronoun_id: pronoun_id,
+    });
+  }, [
+    profile,
+    first_name,
+    last_name,
+    user_id,
+    show_id,
+    sexuality_id,
+    pronoun_id,
+  ]);
+
+  function handleChange(e) {
+    setProfileData({ ...profileData, [e.target.name]: e.target.value });
+  }
+
+  function handleImageChange(e) {
+    setProfilePicData({
+      ...profilePicData,
+      [e.target.name]: e.target.files[0],
+    });
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    fetch(`/profiles/${profile.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(profileData),
     })
-  
-    useEffect(() => {
-      setProfileData({
-        first_name: first_name,
-        last_name: last_name,
-        bio: bio,
-        user_id: user_id,
-        show_id: show_id,
-        sexuality_id: sexuality_id,
-        pronoun_id: pronoun_id
+      .then((res) => res.json())
+      .then((data) => onUpdateProfile(data));
+  }
+  function handleProfilePicSubmit(e) {
+    e.preventDefault();
+    const pic = new FormData();
 
-      })
-    }, [profile, first_name, last_name, user_id, show_id, sexuality_id, pronoun_id])
-  
-    function handleChange(e) {
-      setProfileData({ ...profileData, [e.target.name]: e.target.value })
-    }
-  
-    function handleImageChange(e) {
-      setProfilePicData({ ...profilePicData, [e.target.name]: e.target.files[0] })
-    }
-  
-    function handleSubmit(e) {
-      e.preventDefault()
-  
-      fetch(`/profiles/${profile.id}`, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(profileData)
-      })
-      .then(res => res.json())
-      .then(data => onUpdateProfile(data))
-    }
+    pic.append("profile_pic", profilePicData.profile_pic);
+    pic.append("id", profile.id);
 
-    function handleProfilePicSubmit(e) {
-      e.preventDefault()
-      const pic = new FormData()
-  
-      pic.append("profile_pic", profilePicData.profile_pic)
-      pic.append("id", profile.id)
-  
-      fetch("/update_profile_pic", {
-        method: "PATCH",
-        body: pic,
-      })
-        .then((res) => res.json())
-        .then((profile) => onUpdateProfilePic(profile.profile_pic_url))
-    }
+    fetch("/update_profile_pic", {
+      method: "PATCH",
+      body: pic,
+    })
+      .then((res) => res.json())
+      .then((profile) => onUpdateProfilePicUrl(profile.profile_pic_url));
+  }
+
   const sexualityOptions = sexualities.map((sexuality) => {
     return (
       <option key={sexuality.id} value={sexuality.id}>
@@ -337,4 +360,4 @@ import "./stylesheets/edit_profile.css";
   );
 }
 
-export default EditProfile;
+export default EditProfileForm;

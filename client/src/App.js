@@ -12,18 +12,17 @@ import ShowUsers from "./components/ShowUsers";
 // import Filter from "./components/Filter"
 import EditProfileForm from "./components/EditProfileForm";
 function App() {
-  const [currentUser, setCurrentUser] = useState({profile:{},});
+  const [currentUser, setCurrentUser] = useState({ profile: {} });
   const [isAuthenticated, setIsAuthenticated] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [profiles, setProfiles] = useState([])
+  const [profiles, setProfiles] = useState([]);
   const [currentProfile, setCurrentProfile] = useState({});
   const [pronouns, setPronouns] = useState([]);
   const [sexualities, setSexualities] = useState([]);
   const [shows, setShows] = useState([]);
 
   useEffect(() => {
-    fetch("/me")
-    .then((r) => {
+    fetch("/me").then((r) => {
       if (r.ok) {
         r.json().then((user) => {
           setCurrentUser(user);
@@ -34,32 +33,38 @@ function App() {
       }
     });
   }, []);
-
-  useEffect (()=> {
-fetch("/profiles")
-.then((r) => r.json())
-.then(setProfiles)
-  }, [currentProfile])
+  // console.log(currentUser);
+  useEffect(() => {
+    fetch("/profiles")
+      .then((r) => r.json())
+      .then(setProfiles);
+  }, [currentProfile]);
   // console.log(currentProfile)
 
   function handleUpdateProfilePicUrl(profile_pic_url) {
-    const newProfileObj = {...currentProfile}
-    newProfileObj.profile_pic_url = profile_pic_url
-    setCurrentProfile(newProfileObj)
+    const newProfileObj = { ...currentProfile };
+    newProfileObj.profile_pic_url = profile_pic_url;
+    setCurrentProfile(newProfileObj);
   }
 
-  function handleUpdateProfile(profileData){
-    const newProfileObj = {...currentProfile}
-    newProfileObj.first_name = profileData.first_name
-    newProfileObj.last_name = profileData.last_name
-    newProfileObj.bio = profileData.bio
-    newProfileObj.user_id = profileData.user_id
-    newProfileObj.show_id = profileData.show_id
-    newProfileObj.pronoun_id = profileData.pronoun_id
-    newProfileObj.sexuality_id = profileData.sexuality_id
-    setCurrentProfile(newProfileObj)
-  }
+  function handleUpdateProfile(profileData) {
+    console.log(currentProfile)
+    const newProfileObj = { ...currentProfile };
+    newProfileObj.first_name = profileData.first_name;
+    newProfileObj.last_name = profileData.last_name;
+    newProfileObj.bio = profileData.bio;
+    newProfileObj.user_id = profileData.user_id;
+    newProfileObj.show_id = profileData.show_id;
+    newProfileObj.pronoun_id = profileData.pronoun_id;
+    newProfileObj.sexuality_id = profileData.sexuality_id;
+    newProfileObj.sexuality = profileData.sexuality;
+    newProfileObj.pronoun = profileData.pronoun;
+    newProfileObj.show = profileData.show;
 
+    // console.log(newProfileObj)
+    setCurrentProfile(newProfileObj);
+  }
+console.log(currentProfile)
   // function handleUpdateProfile(profileData) {
   //   const newProfObj = { ...currentProfile };
   //   (newProfObj.first_name = profileData.first_name)
@@ -166,11 +171,12 @@ fetch("/profiles")
               setIsLoggedIn={setIsLoggedIn}
               setCurrentUser={setCurrentUser}
               handleLogout={handleLogout}
+              setCurrentProfile={setCurrentProfile}
             />
             {/* <h1>Welcome, {currentUser.username}!</h1> */}
           </Route>
           <Route exact path="/signup">
-            <SignupForm setCurrentUser={setCurrentUser} />
+            <SignupForm setCurrentUser={setCurrentUser} setCurrentProfile={setCurrentProfile} />
             <h1>I'm signing up</h1>
           </Route>
           <Route exact path="/profiles/:id">
@@ -178,6 +184,9 @@ fetch("/profiles")
               handleUpdateProfile={handleUpdateProfile}
               currentUser={currentUser}
               currentProfile={currentProfile}
+              // sexualities={sexualities}
+              // pronouns={pronouns}
+              // shows={shows}
             />
           </Route>
           {currentUser && (
@@ -187,8 +196,8 @@ fetch("/profiles")
                 sexualities={sexualities}
                 pronouns={pronouns}
                 shows={shows}
-                handleUpdateProfile={handleUpdateProfile}
-                handleUpdateProfilePicUrl={handleUpdateProfilePicUrl}
+                onUpdateProfile={handleUpdateProfile}
+                onUpdateProfilePicUrl={handleUpdateProfilePicUrl}
                 currentUser={currentUser}
               />
             </Route>
