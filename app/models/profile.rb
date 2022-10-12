@@ -3,9 +3,9 @@ class Profile < ApplicationRecord
   belongs_to :pronoun
   belongs_to :user
   belongs_to :show
-  has_one_attached :image
+  has_one_attached :profile_pic
 
-  def image_url
-    Rails.application.routes.url_helpers.url_for(image) if image.attached?
+  def profile_pic_url
+    Rails.application.routes.url_helpers.url_for(profile_pic) if profile_pic.attached?
   end
 end
