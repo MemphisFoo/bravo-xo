@@ -30,8 +30,8 @@ const LoginForm = ({ isLoggedIn, setIsLoggedIn, setCurrentUser, setCurrentProfil
           setCurrentProfile(user.profile)
           setIsLoggedIn(true)
           history.push('/')
-          console.log(isLoggedIn)
-          console.log(user)
+          // console.log(isLoggedIn)
+          // console.log(user)
         });
       } else {
         res.json().then((errors) => {

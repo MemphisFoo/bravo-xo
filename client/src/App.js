@@ -64,7 +64,7 @@ function App() {
     // console.log(newProfileObj)
     setCurrentProfile(newProfileObj);
   }
-console.log(currentProfile)
+// console.log(currentProfile)
   // function handleUpdateProfile(profileData) {
   //   const newProfObj = { ...currentProfile };
   //   (newProfObj.first_name = profileData.first_name)
@@ -137,6 +137,7 @@ console.log(currentProfile)
   // }
 
   const history = { useHistory };
+
   const handleLogout = () => {
     fetch("/logout", { method: "DELETE" }).then((res) => {
       if (res.ok) {
@@ -177,7 +178,6 @@ console.log(currentProfile)
           </Route>
           <Route exact path="/signup">
             <SignupForm setCurrentUser={setCurrentUser} setCurrentProfile={setCurrentProfile} />
-            <h1>I'm signing up</h1>
           </Route>
           <Route exact path="/profiles/:id">
             <Profile
@@ -209,7 +209,7 @@ console.log(currentProfile)
             <Shows shows={shows} />
           </Route>
           <Route exact path="/shows/:id">
-            <ShowUsers shows={shows} />
+            <ShowUsers shows={shows} profiles={profiles} />
           </Route>
         </Switch>
       </div>
