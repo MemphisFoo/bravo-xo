@@ -25,7 +25,7 @@ function NavBar({ profile, currentUser, isLoggedIn, handleLogout, }) {
     <div id="navbar">
       <img
         id="navbar-logo"
-        src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Bravo_TV_%282017_Logo%29.png/793px-Bravo_TV_%282017_Logo%29.png?20170210001612"
+        src="/bravoxo.png"
         alt=""
         onClick={handleClick}
       />

@@ -1,21 +1,21 @@
 import React from 'react'
 
-function ProfileCard({profile}) {
+function ProfileCard({profile}, {user}) {
   
   
     return (
     
           <div className="overflow-auto flex items-center justify-center bg-gradient-to-br from-pink-500 to-purple-500 text-white rounded-lg border shadow-md md:flex-row md:max-w-xl dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
-        <img className="object-cover w-full h-96 rounded-t-lg md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"  src={profile.profile_photo} alt="" />
+        <img className="object-cover w-full h-96 rounded-t-lg md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"  src={profile.profile_pic_url} alt="" />
          <div>
           <p>
-            Username: ({profile.pronoun.preference})
+            Username: {profile.first_name} {profile.last_name} ({profile.pronoun})
           </p>
           <p>
             Bio: "{profile.bio}"
           </p>
-          <p>Sexuality: {profile.sexuality.choose}</p>
-          <p>Show: {profile.show.title}</p>
+          <p>Sexuality: {profile.sexuality}</p>
+          <p>Show: {profile.show}</p>
           <br/>
           <div className="flex flex-wrap gap-2">
           <button className="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-white rounded-lg group bg-gradient-to-br from-purple-500 to-pink-500 group-hover:from-purple-500 group-hover:to-pink-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800">
