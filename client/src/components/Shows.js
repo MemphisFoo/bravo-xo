@@ -12,7 +12,6 @@ const { id } = useParams()
 function onShow(show) {
     // history.push(`/shows/${id}`)
     setProfiles(show.profiles)
-    console.log(profiles)
 }
 
 
