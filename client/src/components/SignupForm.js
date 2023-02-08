@@ -23,7 +23,7 @@ const SignupForm = ({ setCurrentUser, setCurrentProfile }) => {
       [e.target.name]: e.target.value,
     });
   };
-  const history = { useHistory }
+  const history = useHistory()
   function handleSubmit(e) {
     e.preventDefault();
 
@@ -32,7 +32,6 @@ const SignupForm = ({ setCurrentUser, setCurrentProfile }) => {
     // data.append('email', formData.email)
     // data.append('password', formData.password)
     // data.append('image', formData.image)
-
 
     const userCreds = { ...formData };
 

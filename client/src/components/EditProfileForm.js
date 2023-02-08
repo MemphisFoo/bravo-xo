@@ -163,6 +163,8 @@ function EditProfileForm({
     profile_pic: null,
   });
 
+  const history = useHistory()
+
   useEffect(() => {
     setProfileData({
       first_name: first_name,
@@ -205,7 +207,8 @@ function EditProfileForm({
       body: JSON.stringify(profileData),
     })
       .then((res) => res.json())
-      .then((data) => onUpdateProfile(data));
+      .then((data) => onUpdateProfile(data))
+      history.push(`/profiles/${profile.id}`);
   }
   function handleProfilePicSubmit(e) {
     e.preventDefault();
