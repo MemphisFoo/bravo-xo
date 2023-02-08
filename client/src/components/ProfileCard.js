@@ -1,6 +1,6 @@
 import React from 'react'
 
-function ProfileCard({profile}, {user}) {
+function ProfileCard({profile, user}) {
   
   
     return (
@@ -9,7 +9,7 @@ function ProfileCard({profile}, {user}) {
         <img className="object-cover w-full h-96 rounded-t-lg md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"  src={profile.profile_pic_url} alt="" />
          <div>
           <p>
-            Username: {profile.first_name} {profile.last_name} ({profile.pronoun})
+            Name: {profile.first_name} {profile.last_name} ({profile.pronoun})
           </p>
           <p>
             Bio: "{profile.bio}"

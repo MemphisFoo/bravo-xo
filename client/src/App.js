@@ -20,6 +20,7 @@ function App() {
   const [pronouns, setPronouns] = useState([]);
   const [sexualities, setSexualities] = useState([]);
   const [shows, setShows] = useState([]);
+  const [users, setUsers] = useState([])
 
   useEffect(() => {
     fetch("/me").then((r) => {
@@ -97,7 +98,7 @@ function App() {
   }, []);
 
   function getSelections() {
-    const urls = ["/pronouns", "/sexualities", "/shows"];
+    const urls = ["/pronouns", "/sexualities", "/shows", "/users"];
     Promise.all(urls.map((url) => fetch(url)))
       .then((r) => Promise.all(r.map((r) => r.json())))
       .then((data) => {
@@ -163,7 +164,7 @@ function App() {
       <div>
         <Switch>
           <Route exact path="/">
-            {/* <h1>Welcome, {currentUser.username}!</h1> */}
+            <h1>Welcome, {currentUser.username}!</h1>
           </Route>
           <Route exact path="/login">
             <LoginForm
@@ -202,14 +203,11 @@ function App() {
               />
             </Route>
           )}
-          {/* <Filter
-            search={search}
-            onSearchChange={setSearch}/> */}
           <Route exact path="/shows">
-            <Shows shows={shows} />
+            <Shows users={users} shows={shows} />
           </Route>
           <Route exact path="/shows/:id">
-            <ShowUsers shows={shows} profiles={profiles} />
+            <ShowUsers users={users} shows={shows} profiles={profiles} />
           </Route>
         </Switch>
       </div>

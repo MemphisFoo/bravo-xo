@@ -5,18 +5,23 @@ import "./stylesheets/shows.css"
 import ShowUsers from "./ShowUsers";
 function Shows({ shows, setShowProfiles }) {
     const [profiles, setProfiles] = useState([])
-
+    const [users, setUsers] = useState([])
     let history = useHistory()
-const { id } = useParams()
+    const { id } = useParams()
 
-function onShow(show) {
+    function onShow(show) {
     // history.push(`/shows/${id}`)
     setProfiles(show.profiles)
-}
+    }
+
+    function onUsers(show) {
+    setUsers(show.users)
+    }
+
 
 
     const showTitles = shows.map(show =>
-            <ShowTitles key={show.id} show={show} onShow={onShow} />
+            <ShowTitles key={show.id} show={show} onShow={onShow} onUsers={onUsers} />
     )
 
 
@@ -27,7 +32,7 @@ function onShow(show) {
             {showTitles}
         </div>
         {profiles &&
-        <ShowUsers profiles={profiles} />
+        <ShowUsers users={users} profiles={profiles} />
         }
         </div>
         </div>

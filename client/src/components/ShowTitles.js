@@ -2,10 +2,11 @@ import React, {useState} from 'react'
 import { useParams, useHistory} from 'react-router-dom'
 import ShowUsers from './ShowUsers'
 
-function ShowTitles({show, onShow}) {
+function ShowTitles({show, onShow, onUsers}) {
 
 function handleClick(){
     onShow(show)
+    onUsers(show.user)
 }
 
   return (
