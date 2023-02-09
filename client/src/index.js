@@ -4,17 +4,17 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'flowbite'
-import actionCable from 'actioncable'
+import ActionCable from "actioncable";
 
-// const cableApp={}
+const cableApp={}
 
-// cableApp.cable=actionCable.createConsumer('ws://localhost:3000/cable')
-// console.log(cableApp)
+cableApp.cable=ActionCable.createConsumer('/cable')
+console.log(cableApp)
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <App cable={cableApp.cable}/>
   </React.StrictMode>
 );
 

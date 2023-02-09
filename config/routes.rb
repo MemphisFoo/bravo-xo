@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   resources :block_users
   resources :sexualities
   resources :users
-  # mount ActionCable.server => '/cable'
+  mount ActionCable.server => "/cable"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
