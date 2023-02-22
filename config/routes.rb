@@ -43,6 +43,6 @@ Rails.application.routes.draw do
   patch "/update_profile_pic", to: "profiles#update_profile_pic"
   #Shows
   get "/shows", to: "shows#index"
-  # get "/shows/:id/users", to: "shows#show_profiles"
+  get "/shows/:id/users", to: "shows#show_users"
   get "/shows/:id", to: "shows#show"
 end
