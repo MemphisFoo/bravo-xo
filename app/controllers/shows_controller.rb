@@ -9,9 +9,9 @@ class ShowsController < ApplicationController
     render json: show, status: :ok
   end
 
-  # def show_profiles
-  #   show_profiles = Show.find(params[:profile])
-  #   render json: show_profiles, serializer: ShowSerializer
+  # def show_users
+  #   show_users = Show.find(params[:users])
+  #   render json: show_users, serializer: ShowSerializer
   # end
 
   private

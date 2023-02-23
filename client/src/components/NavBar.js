@@ -82,7 +82,7 @@ function NavBar({ profile, currentUser, isLoggedIn, handleLogout, }) {
               >
                 Edit Profile
               </Dropdown.Item>
-              <Dropdown.Item>Messages</Dropdown.Item>
+              <Dropdown.Item>Messages (Still a WIP!)</Dropdown.Item>
               <Dropdown.Divider />
               <Dropdown.Item onClick={handleLogout}>Sign out</Dropdown.Item>
             </Dropdown>

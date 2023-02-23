@@ -13,9 +13,9 @@ class ProfileSerializer < ActiveModel::Serializer
     self.object.show.title
   end
 
-  def username
-    self.object.user.username
-  end
+  # def username
+  #   self.object.user.username
+  # end
 
   # $ don't necessarily need these in the serializer
   # has_one :sexuality
