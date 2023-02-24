@@ -1,5 +1,13 @@
-.App {
-  /* display: flex; */
+html{
+  background: url("./backgrounds/Neon_Path.jpeg") no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+/* .App {
+  display: flex;
   text-align: center;
   color: black;
   align-items: center;
@@ -7,7 +15,7 @@
   background-attachment: scroll;
   background-size:cover;
   
-}
+} */
 
 
 .App-logo {

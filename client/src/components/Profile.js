@@ -1,6 +1,6 @@
 import { Button } from "flowbite-react";
 import React, { useState, useEffect } from "react";
-import "./stylesheets/profile.css";
+// import "./stylesheets/profile.css";
 import { useParams } from "react-router-dom";
 // import EditProfileForm from "./EditProfileForm"
 import { useHistory } from "react-router-dom";
@@ -59,8 +59,7 @@ function Profile({ currentProfile }) {
         <div className="block mb-2 text-xl font-medium">
           <p>
             Name:
-            {first_name}
-            {last_name}
+            {first_name} {last_name}
           </p>
           <p>Pronouns: {pronoun}</p>
           <p>Bio: "{bio}"</p>
