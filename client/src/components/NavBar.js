@@ -55,15 +55,15 @@ function NavBar({ profile, currentUser, isLoggedIn, handleLogout, }) {
               </Link>
             </span>
           </button>
-          <div className="flex flex-wrap gap-2 fixed right-10">
+          <div className="fixed right-10">
             <Dropdown
               label={
                 <Avatar 
                 alt="User settings" 
-                img={profile_pic_url} 
+                img={profile_pic_url}
                 rounded={true} 
-                bordered={true} 
-                color="pink"
+                bordered={true}
+                color="pink"  
                 size="lg" 
                 />
               }

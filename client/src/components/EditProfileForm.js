@@ -163,7 +163,7 @@ function EditProfileForm({
     profile_pic: null,
   });
 
-  const history = useHistory()
+  const history = useHistory();
 
   useEffect(() => {
     setProfileData({
@@ -207,8 +207,8 @@ function EditProfileForm({
       body: JSON.stringify(profileData),
     })
       .then((res) => res.json())
-      .then((data) => onUpdateProfile(data))
-      history.push(`/profiles/${profile.id}`);
+      .then((data) => onUpdateProfile(data));
+    history.push(`/profiles/${profile.id}`);
   }
   function handleProfilePicSubmit(e) {
     e.preventDefault();
@@ -250,12 +250,12 @@ function EditProfileForm({
   });
 
   return (
-    <div className="w-full">
+    <div>
       <div className="flex justify-center">
-        <div className=" p-4 w-full bg-black rounded-lg border border-purple-500 shadow-md sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
+        <div className="p-4 w-half bg-gradient-to-t from-cyan-300 to-purple-900 rounded-lg border border-purple-500 shadow-md sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
           <form className="space-y-6" onSubmit={handleSubmit}>
             <label
-              className="block mb-2 text-xl font-medium text-purple-500 dark:text-purple-500"
+              className="block mb-2 text-xl font-medium text-cyan-300 dark:text-cyan-300"
               htmlFor="first_name"
             >
               First Name:
@@ -269,7 +269,7 @@ function EditProfileForm({
               className="bg-gray-50 border border-gray-300 text-gray-900 text-l rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
             />
             <label
-              className="block mb-2 text-xl font-medium text-purple-500 dark:text-purple-500"
+              className="block mb-2 text-xl font-medium text-cyan-300 dark:text-cyan-300"
               htmlFor="last_name"
             >
               Last Name:
@@ -283,7 +283,7 @@ function EditProfileForm({
               className="bg-gray-50 border border-gray-300 text-gray-900 text-l rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
             />
             <label
-              className="block mb-2 text-xl font-large text-purple-500 dark:text-purple-500"
+              className="block mb-2 text-xl font-large text-cyan-300 dark:text-cyan-300"
               htmlFor="bio"
             >
               Bio:
@@ -297,7 +297,7 @@ function EditProfileForm({
               className="bg-gray-50 border border-gray-300 text-gray-900 text-l rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
             />
             <div>
-              <label className="block mb-2 text-xl font-large text-pink-500 dark:text-purple-500">
+              <label className="block mb-2 text-xl font-large text-purple-700 dark:text-purple-700">
                 Sexuality:&nbsp; &nbsp;
               </label>
               <select
@@ -307,7 +307,7 @@ function EditProfileForm({
               >
                 {sexualityOptions}
               </select>
-              <label className="block mb-2 text-xl font-large text-pink-500 dark:text-pink-500">
+              <label className="block mb-2 text-xl font-large text-purple-700 dark:text-purple-700">
                 Pronouns:&nbsp; &nbsp;
               </label>
               <select
@@ -317,7 +317,7 @@ function EditProfileForm({
               >
                 {pronounOptions}
               </select>
-              <label className="block mb-2 text-xl font-large text-pink-500 dark:text-purple-500">
+              <label className="block mb-2 text-xl font-large text-purple-700 dark:text-purple-500">
                 Show:&nbsp; &nbsp;
               </label>
               <select
@@ -328,7 +328,7 @@ function EditProfileForm({
                 {showOptions}
               </select>
               <button
-                className="text-white bg-purple-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
+                className="text-white bg-gradient-to-r from-purple-700 to-fuchsia-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
                 type="submit"
               >
                 Save Changes
@@ -337,7 +337,7 @@ function EditProfileForm({
           </form>
           <form className="space-y-6" onSubmit={handleProfilePicSubmit}>
             <label
-              className="block mb-2 text-xl font-large text-pink-500 dark:text-purple-500"
+              className="block mb-2 text-xl font-large text-purple-700 dark:text-purple-500"
               htmlFor="image"
             >
               Profile Photo:
@@ -351,7 +351,7 @@ function EditProfileForm({
               onChange={handleImageChange}
             />
             <button
-              className="text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
+              className="text-white bg-gradient-to-r from-purple-700 to-fuchsia-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
               type="submit"
             >
               Upload Photo
