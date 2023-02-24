@@ -15,7 +15,7 @@
   #edit-profile-div {
     display: flex;
     flex-direction: column;
-    width: 800px;
+    width: 200px;
     border: 5px solid palevioletred;
     background-color:blueviolet;
     color:black;

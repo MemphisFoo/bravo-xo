@@ -3,8 +3,10 @@
   text-align: center;
   color: black;
   align-items: center;
-  background-image: url("./backgrounds/Neon_Corridor.jpeg");
-  background-attachment: fixed;
+  background-image: url("./backgrounds/Neon_Path.jpeg");
+  background-attachment: scroll;
+  background-size:cover;
+  
 }
 
 
@@ -26,6 +28,7 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
+  background-attachment: scroll;
 }
 
 .App-link {

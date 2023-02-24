@@ -1,4 +1,4 @@
-import "./App.css";
+import "./components/stylesheets/App.css";
 import { useState, useEffect } from "react";
 import { useHistory, BrowserRouter, Switch, Route } from "react-router-dom";
 // import { useHistory } from "react-router-dom";
