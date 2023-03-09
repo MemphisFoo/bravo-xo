@@ -3,142 +3,6 @@ import React, { useState, useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import "./stylesheets/edit_profile.css";
 
-// function EditProfileForm({
-//   // handleUpdateProfile,
-//   imageData,
-//   setImageData,
-//   handleImgSubmit,
-//   currentProfile,
-//   shows,
-//   pronouns,
-//   sexualities,
-//   currentUser}) {
-//   // const [profile, setProfile] = useState(currentProfile);
-
-//   const [profileData, setProfileData] = useState({});
-
-//   function handleUpdateProfile(profileData) {
-//     const newProfObj = { ...currentProfile };
-//     (newProfObj.first_name = profileData.first_name)
-//     (newProfObj.last_name = profileData.last_name)
-//     (newProfObj.bio = profileData.bio)
-//     (newProfObj.show_id = profileData.show.id)
-//     (newProfObj.pronoun_id = profileData.pronoun.id)
-//     (newProfObj.sexuality_id = profileData.sexuality.id)
-//     (newProfObj.user_id = profileData.user.id)
-//   }
-//   useEffect(() => {
-//     setProfileData({
-//       first_name: newProfObj.first_name,
-//       last_name: newProfObj.last_name,
-//       email: newProfObj.email,
-//       bio: newProfObj.bio,
-//       user_id: newProfObj.user_id,
-//       sexuality_id: newProfObj.sexuality_id,
-//       pronoun_id: newProfObj.pronoun_id,
-//       show_id: show_id,
-//     });
-//   }, []);
-
-//   function handleUpdateProfile(profileData) {
-//     const newProfObj = { ...currentProfile };
-//     newProfObj.first_name = profileData.first_name;
-//     newProfObj.last_name = profileData.last_name;
-//     newProfObj.bio = profileData.bio;
-//     newProfObj.show_id = profileData.show.id;
-//     newProfObj.pronoun_id = profileData.pronoun.id;
-//     newProfObj.sexuality_id = profileData.sexuality.id;
-//     newProfObj.user_id = profileData.user.id;
-//   }
-
-//   // console.log(profile)
-//   // const [pronouns, setPronouns] = useState([]);
-//   // const [sexualities, setSexualities] = useState([]);
-//   // const [shows, setShows] = useState([])
-//   let history = useHistory();
-//   // const [formData, setFormData] = useState({
-//   //   first_name: profile.first_name,
-//   //   last_name: profile.last_name,
-//   //   bio: profile.bio,
-//   //   show_id: profile.show.id,
-//   //   pronoun_id: profile.pronoun.id,
-//   //   sexuality_id: profile.sexuality.id,
-//   //   user_id: profile.user.id,
-//   //   image: null
-//   // });
-//   // console.log(formData)
-
-//   const { id } = useParams();
-//   // $ PATCH for updating profile
-//   function handleProfileSubmit(e) {
-//     e.preventDefault();
-//     //   const formDataBody = {
-//     //     first_name: formData.first_name,
-//     //     last_name: formData.last_name,
-//     //     bio: formData.bio,
-//     //     // image: formData.image,
-//     //     show_id: parseInt(formData.show_id),
-//     //     pronoun_id: parseInt(formData.pronoun_id),
-//     //     sexuality_id: parseInt(formData.sexuality_id),
-//     //     // user_id: parseInt(formData.user_id)
-//     //   }
-
-//     // console.log(formDataBody)
-//     fetch(`/profiles/${currentUser.id}`, {
-//       method: "PATCH",
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//       body: JSON.stringify(profileData),
-//     })
-//       .then((r) => r.json())
-//       .then((data) => {
-//         // onUpdateProfile(updatedProfile);
-//         handleUpdateProfile(data);
-//         history.push(`/profiles/${id}`);
-//       });
-//   }
-
-//   // function handleUpdateImageUrl(image_url) {
-//   //   const formDataImage = {
-//   //     image: formData.image}
-//   //   formDataImage.image = image_url
-//   //   setProfile(formDataImage)
-//   // }
-
-//   // function handleProfilePicSubmit(e) {
-//   //   e.preventDefault();
-//   //   const pic = new FormData()
-//   //   pic.append('image', formData.image)
-//   //   pic.append('user_id', formData.user_id)
-//   //   // pic.append('id', profile.id)
-
-//   //   fetch("/update_image", {
-//   //     method: "PATCH",
-//   //     body: pic,
-//   //   })
-//   //     .then((res) => res.json())
-//   //     .then((profile) => handleImageUrl(profile.image_url));
-//   // };
-
-//   const handleProfileChange = (e) => {
-//     setProfileData({
-//       ...profileData,
-//       [e.target.name]: e.target.value,
-//     });
-//     // console.log(formData)
-//   };
-//   const handleImageChange = (e) => {
-//     setImageData({
-//       ...imageData,
-//       [e.target.name]: e.target.files[0],
-//     });
-//   };
-
-// console.log(profile)
-
-// new EditProfileForm code
-
 function EditProfileForm({
   onUpdateProfilePicUrl,
   onUpdateProfile,
@@ -364,3 +228,139 @@ function EditProfileForm({
 }
 
 export default EditProfileForm;
+// previous code from an earlier version
+// function EditProfileForm({
+//   // handleUpdateProfile,
+//   imageData,
+//   setImageData,
+//   handleImgSubmit,
+//   currentProfile,
+//   shows,
+//   pronouns,
+//   sexualities,
+//   currentUser}) {
+//   // const [profile, setProfile] = useState(currentProfile);
+
+//   const [profileData, setProfileData] = useState({});
+
+//   function handleUpdateProfile(profileData) {
+//     const newProfObj = { ...currentProfile };
+//     (newProfObj.first_name = profileData.first_name)
+//     (newProfObj.last_name = profileData.last_name)
+//     (newProfObj.bio = profileData.bio)
+//     (newProfObj.show_id = profileData.show.id)
+//     (newProfObj.pronoun_id = profileData.pronoun.id)
+//     (newProfObj.sexuality_id = profileData.sexuality.id)
+//     (newProfObj.user_id = profileData.user.id)
+//   }
+//   useEffect(() => {
+//     setProfileData({
+//       first_name: newProfObj.first_name,
+//       last_name: newProfObj.last_name,
+//       email: newProfObj.email,
+//       bio: newProfObj.bio,
+//       user_id: newProfObj.user_id,
+//       sexuality_id: newProfObj.sexuality_id,
+//       pronoun_id: newProfObj.pronoun_id,
+//       show_id: show_id,
+//     });
+//   }, []);
+
+//   function handleUpdateProfile(profileData) {
+//     const newProfObj = { ...currentProfile };
+//     newProfObj.first_name = profileData.first_name;
+//     newProfObj.last_name = profileData.last_name;
+//     newProfObj.bio = profileData.bio;
+//     newProfObj.show_id = profileData.show.id;
+//     newProfObj.pronoun_id = profileData.pronoun.id;
+//     newProfObj.sexuality_id = profileData.sexuality.id;
+//     newProfObj.user_id = profileData.user.id;
+//   }
+
+//   // console.log(profile)
+//   // const [pronouns, setPronouns] = useState([]);
+//   // const [sexualities, setSexualities] = useState([]);
+//   // const [shows, setShows] = useState([])
+//   let history = useHistory();
+//   // const [formData, setFormData] = useState({
+//   //   first_name: profile.first_name,
+//   //   last_name: profile.last_name,
+//   //   bio: profile.bio,
+//   //   show_id: profile.show.id,
+//   //   pronoun_id: profile.pronoun.id,
+//   //   sexuality_id: profile.sexuality.id,
+//   //   user_id: profile.user.id,
+//   //   image: null
+//   // });
+//   // console.log(formData)
+
+//   const { id } = useParams();
+//   // $ PATCH for updating profile
+//   function handleProfileSubmit(e) {
+//     e.preventDefault();
+//     //   const formDataBody = {
+//     //     first_name: formData.first_name,
+//     //     last_name: formData.last_name,
+//     //     bio: formData.bio,
+//     //     // image: formData.image,
+//     //     show_id: parseInt(formData.show_id),
+//     //     pronoun_id: parseInt(formData.pronoun_id),
+//     //     sexuality_id: parseInt(formData.sexuality_id),
+//     //     // user_id: parseInt(formData.user_id)
+//     //   }
+
+//     // console.log(formDataBody)
+//     fetch(`/profiles/${currentUser.id}`, {
+//       method: "PATCH",
+//       headers: {
+//         "Content-Type": "application/json",
+//       },
+//       body: JSON.stringify(profileData),
+//     })
+//       .then((r) => r.json())
+//       .then((data) => {
+//         // onUpdateProfile(updatedProfile);
+//         handleUpdateProfile(data);
+//         history.push(`/profiles/${id}`);
+//       });
+//   }
+
+//   // function handleUpdateImageUrl(image_url) {
+//   //   const formDataImage = {
+//   //     image: formData.image}
+//   //   formDataImage.image = image_url
+//   //   setProfile(formDataImage)
+//   // }
+
+//   // function handleProfilePicSubmit(e) {
+//   //   e.preventDefault();
+//   //   const pic = new FormData()
+//   //   pic.append('image', formData.image)
+//   //   pic.append('user_id', formData.user_id)
+//   //   // pic.append('id', profile.id)
+
+//   //   fetch("/update_image", {
+//   //     method: "PATCH",
+//   //     body: pic,
+//   //   })
+//   //     .then((res) => res.json())
+//   //     .then((profile) => handleImageUrl(profile.image_url));
+//   // };
+
+//   const handleProfileChange = (e) => {
+//     setProfileData({
+//       ...profileData,
+//       [e.target.name]: e.target.value,
+//     });
+//     // console.log(formData)
+//   };
+//   const handleImageChange = (e) => {
+//     setImageData({
+//       ...imageData,
+//       [e.target.name]: e.target.files[0],
+//     });
+//   };
+
+// console.log(profile)
+
+// new EditProfileForm code
