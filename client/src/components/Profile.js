@@ -6,7 +6,6 @@ import { useParams } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 
 function Profile({ currentProfile }) {
-  console.log(currentProfile);
   const history = useHistory();
   const {
     profile_pic_url,
