@@ -1,5 +1,5 @@
 class ShowSerializer < ActiveModel::Serializer
-  attributes :id, :title, :profiles, :users
+  attributes :id, :title, :acronymn, :profiles, :users
 
   has_many :profiles
   has_many :users

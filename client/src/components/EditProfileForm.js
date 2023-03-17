@@ -3,6 +3,232 @@ import React, { useState, useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import "./stylesheets/edit_profile.css";
 
+function EditProfileForm({
+  onUpdateProfilePicUrl,
+  onUpdateProfile,
+  profile,
+  sexualities,
+  pronouns,
+  shows,
+}) {
+  const {
+    first_name,
+    last_name,
+    bio,
+    user_id,
+    show_id,
+    sexuality_id,
+    pronoun_id,
+  } = profile;
+
+  const [profileData, setProfileData] = useState({});
+
+  const [profilePicData, setProfilePicData] = useState({
+    profile_pic: null,
+  });
+
+  const history = useHistory();
+
+  useEffect(() => {
+    setProfileData({
+      first_name: first_name,
+      last_name: last_name,
+      bio: bio,
+      user_id: user_id,
+      show_id: show_id,
+      sexuality_id: sexuality_id,
+      pronoun_id: pronoun_id,
+    });
+  }, [
+    profile,
+    first_name,
+    last_name,
+    user_id,
+    show_id,
+    sexuality_id,
+    pronoun_id,
+  ]);
+
+  function handleChange(e) {
+    setProfileData({ ...profileData, [e.target.name]: e.target.value });
+  }
+
+  function handleImageChange(e) {
+    setProfilePicData({
+      ...profilePicData,
+      [e.target.name]: e.target.files[0],
+    });
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    fetch(`/profiles/${profile.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(profileData),
+    })
+      .then((res) => res.json())
+      .then((data) => onUpdateProfile(data));
+    history.push(`/profiles/${profile.id}`);
+  }
+  function handleProfilePicSubmit(e) {
+    e.preventDefault();
+    const pic = new FormData();
+
+    pic.append("profile_pic", profilePicData.profile_pic);
+    pic.append("id", profile.id);
+
+    fetch("/update_profile_pic", {
+      method: "PATCH",
+      body: pic,
+    })
+      .then((res) => res.json())
+      .then((profile) => onUpdateProfilePicUrl(profile.profile_pic_url));
+  }
+
+  const sexualityOptions = sexualities.map((sexuality) => {
+    return (
+      <option key={sexuality.id} value={sexuality.id}>
+        {sexuality.choose}
+      </option>
+    );
+  });
+
+  const pronounOptions = pronouns.map((pronoun) => {
+    return (
+      <option key={pronoun.id} value={pronoun.id}>
+        {pronoun.preference}
+      </option>
+    );
+  });
+
+  const showOptions = shows.map((show) => {
+    return (
+      <option key={show.id} value={show.id}>
+        {show.title}
+      </option>
+    );
+  });
+
+  return (
+    <div>
+      <div className="flex justify-center">
+        <div className="p-4 w-half bg-gradient-to-t from-cyan-300 to-purple-900 rounded-lg border border-purple-500 shadow-md sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
+          <form className="space-y-6" onSubmit={handleSubmit}>
+            <label
+              className="block mb-2 text-xl font-medium text-cyan-300 dark:text-cyan-300"
+              htmlFor="first_name"
+            >
+              First Name:
+            </label>
+            <input
+              id="first_name-edit-input"
+              type="text"
+              name="first_name"
+              value={profileData.first_name}
+              onChange={handleChange}
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-l rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+            />
+            <label
+              className="block mb-2 text-xl font-medium text-cyan-300 dark:text-cyan-300"
+              htmlFor="last_name"
+            >
+              Last Name:
+            </label>
+            <input
+              id="last_name-edit-input"
+              type="text"
+              name="last_name"
+              value={profileData.last_name}
+              onChange={handleChange}
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-l rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+            />
+            <label
+              className="block mb-2 text-xl font-large text-cyan-300 dark:text-cyan-300"
+              htmlFor="bio"
+            >
+              Bio:
+            </label>
+            <input
+              id="bio-edit-input"
+              type="text"
+              name="bio"
+              value={profileData.bio}
+              onChange={handleChange}
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-l rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+            />
+            <div>
+              <label className="block mb-2 text-xl font-large text-purple-700 dark:text-purple-700">
+                Sexuality:&nbsp; &nbsp;
+              </label>
+              <select
+                value={profileData.sexuality_id}
+                name="sexuality_id"
+                onChange={handleChange}
+              >
+                {sexualityOptions}
+              </select>
+              <label className="block mb-2 text-xl font-large text-purple-700 dark:text-purple-700">
+                Pronouns:&nbsp; &nbsp;
+              </label>
+              <select
+                value={profileData.pronoun_id}
+                name="pronoun_id"
+                onChange={handleChange}
+              >
+                {pronounOptions}
+              </select>
+              <label className="block mb-2 text-xl font-large text-purple-700 dark:text-purple-500">
+                Show:&nbsp; &nbsp;
+              </label>
+              <select
+                value={profileData.show_id}
+                name="show_id"
+                onChange={handleChange}
+              >
+                {showOptions}
+              </select>
+              <button
+                className="text-white bg-gradient-to-r from-purple-700 to-fuchsia-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
+                type="submit"
+              >
+                Save Changes
+              </button>
+            </div>
+          </form>
+          <form className="space-y-6" onSubmit={handleProfilePicSubmit}>
+            <label
+              className="block mb-2 text-xl font-large text-purple-700 dark:text-purple-500"
+              htmlFor="image"
+            >
+              Profile Photo:
+            </label>
+            <input
+              type="file"
+              accept="image/*"
+              multiple={false}
+              name="profile_pic"
+              filename={profilePicData.profile_pic}
+              onChange={handleImageChange}
+            />
+            <button
+              className="text-white bg-gradient-to-r from-purple-700 to-fuchsia-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
+              type="submit"
+            >
+              Upload Photo
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default EditProfileForm;
+// previous code from an earlier version
 // function EditProfileForm({
 //   // handleUpdateProfile,
 //   imageData,
@@ -138,229 +364,3 @@ import "./stylesheets/edit_profile.css";
 // console.log(profile)
 
 // new EditProfileForm code
-
-function EditProfileForm({
-  onUpdateProfilePicUrl,
-  onUpdateProfile,
-  profile,
-  sexualities,
-  pronouns,
-  shows,
-}) {
-  const {
-    first_name,
-    last_name,
-    bio,
-    user_id,
-    show_id,
-    sexuality_id,
-    pronoun_id,
-  } = profile;
-
-  const [profileData, setProfileData] = useState({});
-
-  const [profilePicData, setProfilePicData] = useState({
-    profile_pic: null,
-  });
-
-  const history = useHistory()
-
-  useEffect(() => {
-    setProfileData({
-      first_name: first_name,
-      last_name: last_name,
-      bio: bio,
-      user_id: user_id,
-      show_id: show_id,
-      sexuality_id: sexuality_id,
-      pronoun_id: pronoun_id,
-    });
-  }, [
-    profile,
-    first_name,
-    last_name,
-    user_id,
-    show_id,
-    sexuality_id,
-    pronoun_id,
-  ]);
-
-  function handleChange(e) {
-    setProfileData({ ...profileData, [e.target.name]: e.target.value });
-  }
-
-  function handleImageChange(e) {
-    setProfilePicData({
-      ...profilePicData,
-      [e.target.name]: e.target.files[0],
-    });
-  }
-
-  function handleSubmit(e) {
-    e.preventDefault();
-
-    fetch(`/profiles/${profile.id}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(profileData),
-    })
-      .then((res) => res.json())
-      .then((data) => onUpdateProfile(data))
-      history.push(`/profiles/${profile.id}`);
-  }
-  function handleProfilePicSubmit(e) {
-    e.preventDefault();
-    const pic = new FormData();
-
-    pic.append("profile_pic", profilePicData.profile_pic);
-    pic.append("id", profile.id);
-
-    fetch("/update_profile_pic", {
-      method: "PATCH",
-      body: pic,
-    })
-      .then((res) => res.json())
-      .then((profile) => onUpdateProfilePicUrl(profile.profile_pic_url));
-  }
-
-  const sexualityOptions = sexualities.map((sexuality) => {
-    return (
-      <option key={sexuality.id} value={sexuality.id}>
-        {sexuality.choose}
-      </option>
-    );
-  });
-
-  const pronounOptions = pronouns.map((pronoun) => {
-    return (
-      <option key={pronoun.id} value={pronoun.id}>
-        {pronoun.preference}
-      </option>
-    );
-  });
-
-  const showOptions = shows.map((show) => {
-    return (
-      <option key={show.id} value={show.id}>
-        {show.title}
-      </option>
-    );
-  });
-
-  return (
-    <div className="w-full">
-      <div className="flex justify-center">
-        <div className=" p-4 w-full bg-black rounded-lg border border-purple-500 shadow-md sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
-          <form className="space-y-6" onSubmit={handleSubmit}>
-            <label
-              className="block mb-2 text-xl font-medium text-purple-500 dark:text-purple-500"
-              htmlFor="first_name"
-            >
-              First Name:
-            </label>
-            <input
-              id="first_name-edit-input"
-              type="text"
-              name="first_name"
-              value={profileData.first_name}
-              onChange={handleChange}
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-l rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-            />
-            <label
-              className="block mb-2 text-xl font-medium text-purple-500 dark:text-purple-500"
-              htmlFor="last_name"
-            >
-              Last Name:
-            </label>
-            <input
-              id="last_name-edit-input"
-              type="text"
-              name="last_name"
-              value={profileData.last_name}
-              onChange={handleChange}
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-l rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-            />
-            <label
-              className="block mb-2 text-xl font-large text-purple-500 dark:text-purple-500"
-              htmlFor="bio"
-            >
-              Bio:
-            </label>
-            <input
-              id="bio-edit-input"
-              type="text"
-              name="bio"
-              value={profileData.bio}
-              onChange={handleChange}
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-l rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-            />
-            <div>
-              <label className="block mb-2 text-xl font-large text-pink-500 dark:text-purple-500">
-                Sexuality:&nbsp; &nbsp;
-              </label>
-              <select
-                value={profileData.sexuality_id}
-                name="sexuality_id"
-                onChange={handleChange}
-              >
-                {sexualityOptions}
-              </select>
-              <label className="block mb-2 text-xl font-large text-pink-500 dark:text-pink-500">
-                Pronouns:&nbsp; &nbsp;
-              </label>
-              <select
-                value={profileData.pronoun_id}
-                name="pronoun_id"
-                onChange={handleChange}
-              >
-                {pronounOptions}
-              </select>
-              <label className="block mb-2 text-xl font-large text-pink-500 dark:text-purple-500">
-                Show:&nbsp; &nbsp;
-              </label>
-              <select
-                value={profileData.show_id}
-                name="show_id"
-                onChange={handleChange}
-              >
-                {showOptions}
-              </select>
-              <button
-                className="text-white bg-purple-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
-                type="submit"
-              >
-                Save Changes
-              </button>
-            </div>
-          </form>
-          <form className="space-y-6" onSubmit={handleProfilePicSubmit}>
-            <label
-              className="block mb-2 text-xl font-large text-pink-500 dark:text-purple-500"
-              htmlFor="image"
-            >
-              Profile Photo:
-            </label>
-            <input
-              type="file"
-              accept="image/*"
-              multiple={false}
-              name="profile_pic"
-              filename={profilePicData.profile_pic}
-              onChange={handleImageChange}
-            />
-            <button
-              className="text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
-              type="submit"
-            >
-              Upload Photo
-            </button>
-          </form>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-export default EditProfileForm;

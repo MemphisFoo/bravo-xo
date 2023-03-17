@@ -1,0 +1,255 @@
+/* html {
+  background: url("./backgrounds/Neon_Path.jpeg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+} */
+
+/* .App {
+  display: flex;
+  text-align: center;
+  color: black;
+  align-items: center;
+  background-image: url("./backgrounds/Neon_Path.jpeg");
+  background-attachment: scroll;
+  background-size:cover;
+  
+} */
+
+.defaultBackground {
+  background: url("./backgrounds/Neon_Path.jpeg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.App-logo {
+  height: 30vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+/* .App-header {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  background-attachment: scroll;
+} */
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+
+}
+
+.RHOA {
+  text-align: center;
+  align-items: center;
+  background-image: url("./backgrounds/rhoa-season-14-16x9-logo.jpeg");
+  background-attachment: scroll;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1
+}
+
+.RHOBH {
+  text-align: center;
+  align-items: center;
+  background-image: url("./backgrounds/rhobh-season12-16x9-logo.jpeg");
+  background-attachment: scroll;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1
+}
+
+.RHONY {
+  text-align: center;
+  align-items: center;
+  background-image: url("./backgrounds/RHONY-background.jpeg");
+  background-attachment: scroll;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1
+}
+
+.RHOOC {
+  text-align: center;
+  align-items: center;
+  background-image: url("./backgrounds/RHOC-background.jpeg");
+  background-attachment: scroll;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1
+}
+
+.RHOSLC {
+  text-align: center;
+  align-items: center;
+  background-image: url("./backgrounds/RHOSLC.jpg");
+  background-attachment: scroll;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1
+}
+
+.VPR {
+  text-align: center;
+  align-items: center;
+  background-image: url("./backgrounds/VPR10-baclground.jpeg");
+  background-attachment: scroll;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1
+}
+
+.BD {
+  text-align: center;
+  align-items: center;
+  background-image: url("./backgrounds/below-deck-season-9-background.jpeg");
+  background-attachment: scroll;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1
+}
+
+.BDM {
+  text-align: center;
+  align-items: center;
+  background-image: url("./backgrounds/BDMed-background.jpeg");
+  background-attachment: scroll;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1
+}
+
+.SH {
+  text-align: center;
+  align-items: center;
+  background-image: url("./backgrounds/SH-background.jpeg");
+  background-attachment: scroll;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1
+}
+
+.MDLNY {
+  text-align: center;
+  align-items: center;
+  background-image: url("./backgrounds/MDLNY.jpeg");
+  background-attachment: scroll;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1
+}
+
+.MDLLA {
+  text-align: center;
+  align-items: center;
+  background-image: url("./backgrounds/MDLLA.jpeg");
+  background-attachment: scroll;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1
+}

@@ -42,16 +42,17 @@ const LoginForm = ({ isLoggedIn, setIsLoggedIn, setCurrentUser, setCurrentProfil
   };
 
   return (
-    <div className="p-4 w-full max-w-sm bg-black rounded-lg border border-purple-500 shadow-md sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
+    <div className="flex justify-center">
+    <div className="p-4 max-w-sm bg-black rounded-lg border border-purple-500 shadow-md sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
       <form onSubmit={handleSubmit} className="space-y-6" action="#">
         {/* <h5 className="text-xl font-medium text-white dark:text-white">Enter the Bravo-verse!</h5> */}
         <div>
-          <label htmlFor="username" className="block mb-2 text-sm font-medium text-purple-500 dark:text-purple-500">Username</label>
-          <input type="username" name="username" id="username" value={formData.username} onChange={handleChange} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required />
+          <label htmlFor="username" className="block mb-2 text-sm font-medium text-purple-600 dark:text-purple-600">Username</label>
+          <input type="username" name="username" id="username" value={formData.username} onChange={handleChange} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-cyan-400 focus:border-cyan-400 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required />
         </div>
         <div>
-          <label htmlFor="password" className="block mb-2 text-sm font-medium text-pink-500 dark:text-pink-500">Password</label>
-          <input type="password" name="password" id="password" value={formData.password} onChange={handleChange} placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required />
+          <label htmlFor="password" className="block mb-2 text-sm font-medium text-fuchsia-500 dark:text-pink-500">Password</label>
+          <input type="password" name="password" id="password" value={formData.password} onChange={handleChange} placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-cyan-400 focus:border-cyan-400 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required />
         </div>
         {/* <div className="flex items-start">
           <div className="flex items-center h-5">
@@ -62,10 +63,11 @@ const LoginForm = ({ isLoggedIn, setIsLoggedIn, setCurrentUser, setCurrentProfil
         <button type="submit" className="text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
           Login
         </button>
-        <div className="text-sm font-medium text-purple-500 dark:text-gray-300">
-          Not registered? <a href="/signup" className="text-blue-700 hover:underline dark:text-blue-500">Create account</a>
+        <div className="text-sm font-medium text-fuchsia-500 dark:text-fuchsia-500">
+          Not registered? <a href="/signup" className="text-cyan-400 hover:underline dark:text-cyan-400">Create account</a>
         </div>
       </form>
+      </div>
     </div>
 
     /* <form onSubmit={handleSubmit}>

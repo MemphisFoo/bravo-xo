@@ -1,4 +1,4 @@
-import "./App.css";
+import "./components/stylesheets/App.css";
 import { useState, useEffect } from "react";
 import { useHistory, BrowserRouter, Switch, Route } from "react-router-dom";
 // import { useHistory } from "react-router-dom";
@@ -48,7 +48,7 @@ function App() {
   }
 
   function handleUpdateProfile(profileData) {
-    console.log(currentProfile)
+    console.log(currentProfile);
     const newProfileObj = { ...currentProfile };
     newProfileObj.first_name = profileData.first_name;
     newProfileObj.last_name = profileData.last_name;
@@ -64,7 +64,7 @@ function App() {
     // console.log(newProfileObj)
     setCurrentProfile(newProfileObj);
   }
-// console.log(currentProfile)
+  // console.log(currentProfile)
   // function handleUpdateProfile(profileData) {
   //   const newProfObj = { ...currentProfile };
   //   (newProfObj.first_name = profileData.first_name)
@@ -152,6 +152,9 @@ function App() {
 
   return (
     <BrowserRouter>
+    <div id="backgroundDiv"
+    className="defaultBackground">
+    </div>
       <NavBar
         className="App"
         profile={currentProfile}
@@ -177,7 +180,10 @@ function App() {
             {/* <h1>Welcome, {currentUser.username}!</h1> */}
           </Route>
           <Route exact path="/signup">
-            <SignupForm setCurrentUser={setCurrentUser} setCurrentProfile={setCurrentProfile} />
+            <SignupForm
+              setCurrentUser={setCurrentUser}
+              setCurrentProfile={setCurrentProfile}
+            />
           </Route>
           <Route exact path="/profiles/:id">
             <Profile
@@ -202,12 +208,11 @@ function App() {
               />
             </Route>
           )}
-          {/* <Filter
-            search={search}
-            onSearchChange={setSearch}/> */}
-          <Route exact path="/shows">
-            <Shows shows={shows} />
-          </Route>
+          {currentUser && (
+            <Route exact path="/shows">
+              <Shows shows={shows} />
+            </Route>
+          )}
           <Route exact path="/shows/:id">
             <ShowUsers shows={shows} profiles={profiles} />
           </Route>

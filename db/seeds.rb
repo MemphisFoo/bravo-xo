@@ -23,17 +23,17 @@ s6 = Sexuality.create(choose: "Non-Binary")
 
 puts "complete!"
 puts "creating shows 📺"
-t1 = Show.create(title: "Real Housewives of Atlanta")
-t2 = Show.create(title: "Real Housewives of Beverly Hills")
-t3 = Show.create(title: "Real Housewives of New York")
-t4 = Show.create(title: "Real Housewives of Orange County")
-t5 = Show.create(title: "Real Housewives of Salt Lake City")
-t6 = Show.create(title: "Vanderpump Rules")
-t7 = Show.create(title: "Below Deck")
-t8 = Show.create(title: "Below Deck Mediterranean")
-t9 = Show.create(title: "Summer House")
-t10 = Show.create(title: "Southern Charm")
-t11 = Show.create(title: "Married To Medicine")
+t1 = Show.create(title: "Real Housewives of Atlanta", acronymn: "RHOA")
+t2 = Show.create(title: "Real Housewives of Beverly Hills", acronymn: "RHOBH")
+t3 = Show.create(title: "Real Housewives of New York", acronymn: "RHONY")
+t4 = Show.create(title: "Real Housewives of Orange County", acronymn: "RHOOC")
+t5 = Show.create(title: "Real Housewives of Salt Lake City", acronymn: "RHOSLC")
+t6 = Show.create(title: "Vanderpump Rules", acronymn: "VPR")
+t7 = Show.create(title: "Below Deck", acronymn: "BD")
+t8 = Show.create(title: "Below Deck Mediterranean", acronymn: "BDM")
+t9 = Show.create(title: "Summer House", acronymn: "SH")
+t10 = Show.create(title: "Million Dollar Listing New York", acronymn: "MDLNY")
+t11 = Show.create(title: "Million Dollar Listing Los Angeles", acronymn: "MDLLA")
 puts "complete!"
 
 puts "seeding users 🗑"
