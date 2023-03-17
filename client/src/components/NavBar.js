@@ -18,7 +18,7 @@ function NavBar({ profile, currentUser, isLoggedIn, handleLogout }) {
   let history = useHistory();
 
   function handleClick() {
-    history.push("/");
+    history.push("/")
   }
   // console.log(currentUser);
   return (

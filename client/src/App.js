@@ -152,6 +152,9 @@ function App() {
 
   return (
     <BrowserRouter>
+    <div id="backgroundDiv"
+    className="defaultBackground">
+    </div>
       <NavBar
         className="App"
         profile={currentProfile}

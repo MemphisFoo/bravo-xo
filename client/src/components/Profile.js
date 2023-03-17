@@ -1,7 +1,7 @@
 import { Button } from "flowbite-react";
 import React, { useState, useEffect } from "react";
 // import "./stylesheets/profile.css";
-import { useParams } from "react-router-dom";
+// import { useParams } from "react-router-dom";
 // import EditProfileForm from "./EditProfileForm"
 import { useHistory } from "react-router-dom";
 
@@ -12,37 +12,12 @@ function Profile({ currentProfile }) {
     first_name,
     last_name,
     bio,
-    show_id,
-    pronoun_id,
-    sexuality_id,
     sexuality,
     pronoun,
     show,
   } = currentProfile;
-  // // might need to put useEffect in a conditional in case currentUser is nil
+  // might need to put useEffect in a conditional in case currentUser is nil
   const [profileData, setProfileData] = useState({});
-  // const { id } = useParams();
-
-  // useEffect(() => {
-  //   fetch(`/profiles/${id}`)
-  //     .then((res) => res.json())
-  //     .then((data) => setProfile(data));
-  // }, [id]);
-  // // console.log(profile)
-  // if (!profile) {
-  //   return <div>loading...</div>;
-  // }
-
-  // useEffect(() => {
-  //   setProfileData({
-  //     first_name: first_name,
-  //     last_name: last_name,
-  //     show_id: show_id,
-  //     sexuality_id: sexuality_id,
-  //     pronoun_id: pronoun_id
-
-  //   })
-  // }, [currentProfile, first_name, last_name, show_id, sexuality_id, pronoun_id])
 
   function handleClick() {
     history.push(`/profiles/${currentProfile.id}/edit`);
@@ -51,7 +26,7 @@ function Profile({ currentProfile }) {
     <div className="flex justify-center">
       <div className="p-4 w-half bg-gradient-to-br from-purple-500 to-pink-500 text-white rounded-lg border shadow-md md:flex-row md:max-w-lg dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
         <img
-          className="object-cover w-full h-full rounded-t-lg md:h-48 md:w-48 md:rounded-none md:rounded-l-lg"
+          className="flex justify-center rounded-t-lg md:h-48 md:w-48 md:rounded-none md:rounded-l-lg"
           src={profile_pic_url}
           alt=""
         />
@@ -74,3 +49,26 @@ function Profile({ currentProfile }) {
 }
 
 export default Profile;
+
+// const { id } = useParams();
+
+// useEffect(() => {
+//   fetch(`/profiles/${id}`)
+//     .then((res) => res.json())
+//     .then((data) => setProfile(data));
+// }, [id]);
+// // console.log(profile)
+// if (!profile) {
+//   return <div>loading...</div>;
+// }
+
+// useEffect(() => {
+//   setProfileData({
+//     first_name: first_name,
+//     last_name: last_name,
+//     show_id: show_id,
+//     sexuality_id: sexuality_id,
+//     pronoun_id: pronoun_id
+
+//   })
+// }, [currentProfile, first_name, last_name, show_id, sexuality_id, pronoun_id])

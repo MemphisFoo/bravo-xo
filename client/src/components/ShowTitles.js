@@ -6,6 +6,9 @@ function ShowTitles({show, onShow}) {
 
 function handleClick(){
     onShow(show)
+    const div=document.getElementById('backgroundDiv')
+    console.log(div)
+    div.className=show.acronymn
 }
 
   return (
