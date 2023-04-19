@@ -1,0 +1,14 @@
+{
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 5432,
+            "driver": "PostgreSQL",
+            "name": "Bravo_XO_Dev",
+            "database": "final_project_development",
+            "username": "memphisfoo",
+            "password": ""
+        }
+    ]
+}
