@@ -8,7 +8,7 @@ import NavBar from "./components/NavBar";
 import Profile from "./components/Profile";
 import Shows from "./components/Shows";
 import ShowUsers from "./components/ShowUsers";
-// import ShowsProfiles from "./components/ShowCards"
+import ShowTitles from "./components/ShowTitles"
 // import Filter from "./components/Filter"
 import EditProfileForm from "./components/EditProfileForm";
 function App() {
@@ -20,6 +20,11 @@ function App() {
   const [pronouns, setPronouns] = useState([]);
   const [sexualities, setSexualities] = useState([]);
   const [shows, setShows] = useState([]);
+  // const {first_name, last_name, bio, user_id, show_id, sexuality_id, pronoun_id,} = profile;
+  const [profileData, setProfileData] = useState({});
+  const [profilePicData, setProfilePicData] = useState({ profile_pic: null });
+
+  const history = useHistory();
 
   useEffect(() => {
     fetch("/me").then((r) => {
@@ -34,12 +39,16 @@ function App() {
     });
   }, []);
   // console.log(currentUser);
+
+  //$Fetch Profiles
   useEffect(() => {
     fetch("/profiles")
       .then((r) => r.json())
       .then(setProfiles);
   }, [currentProfile]);
   // console.log(currentProfile)
+
+  //$ EditProfileForm functions
 
   function handleUpdateProfilePicUrl(profile_pic_url) {
     const newProfileObj = { ...currentProfile };
@@ -60,36 +69,9 @@ function App() {
     newProfileObj.sexuality = profileData.sexuality;
     newProfileObj.pronoun = profileData.pronoun;
     newProfileObj.show = profileData.show;
-
-    // console.log(newProfileObj)
     setCurrentProfile(newProfileObj);
+    setProfiles(profiles);
   }
-  // console.log(currentProfile)
-  // function handleUpdateProfile(profileData) {
-  //   const newProfObj = { ...currentProfile };
-  //   (newProfObj.first_name = profileData.first_name)
-  //   (newProfObj.last_name = profileData.last_name)
-  //   (newProfObj.bio = profileData.bio)
-  //   (newProfObj.show_id = profileData.show.id)
-  //   (newProfObj.pronoun_id = profileData.pronoun.id)
-  //   (newProfObj.sexuality_id = profileData.sexuality.id)
-  //   (newProfObj.user_id = profileData.user.id)
-  // }
-
-  // function handleImgSubmit(e) {
-  //   e.preventDefault();
-  //   const pic = new FormData();
-  //   pic.append("image", imageData.image);
-  //   pic.append("id", currentProfile.id);
-  //   // pic.append('id', profile.id)
-
-  //   fetch("/update_image", {
-  //     method: "PATCH",
-  //     body: pic,
-  //   })
-  //     .then((res) => res.json())
-  //     .then((pic) => handleImageUrl(pic.image_url));
-  // }
 
   // $Promise.all code
   useEffect(() => {
@@ -106,37 +88,6 @@ function App() {
         setShows(data[2]);
       });
   }
-  //  $ ACTIONCABLE FUNCTIONS
-  // function updateAppStateRoom(newRoom) {
-  // 	setCurrentRoom({
-  // 		...currentRoom,
-  // 		chatroom: newRoom,
-  // 		users: newRoom.users,
-  // 		messages: newRoom.messages,
-  // 	})
-  // 	setMessages(newRoom.messages)
-  // }
-
-  // function handleUpdateCurrentUser(user) {
-  // 	setCurrentUser(user)
-  // }
-
-  // function handleCurrentRoom(result) {
-  // 	return {
-  // 		chatroom: result.data.attributes,
-  // 		users: result.data.attributes.users.data,
-  // 		messages: result.data.attributes.messages,
-  // 	}
-  // }
-
-  // function handleClick() {
-  //   setShowProfiles(show.profiles)
-  // }
-  // function handleLogin(currentUser) {
-  //   setCurrentUser(currentUser)
-  // }
-
-  const history = { useHistory };
 
   const handleLogout = () => {
     fetch("/logout", { method: "DELETE" }).then((res) => {
@@ -152,9 +103,7 @@ function App() {
 
   return (
     <BrowserRouter>
-    <div id="backgroundDiv"
-    className="defaultBackground">
-    </div>
+      <div id="backgroundDiv" className="defaultBackground"></div>
       <NavBar
         className="App"
         profile={currentProfile}
@@ -199,6 +148,8 @@ function App() {
             <Route exact path="/profiles/:id/edit">
               <EditProfileForm
                 profile={currentProfile}
+                profiles={profiles}
+                setProfiles={setProfiles}
                 sexualities={sexualities}
                 pronouns={pronouns}
                 shows={shows}
@@ -208,14 +159,23 @@ function App() {
               />
             </Route>
           )}
+          <Route exact path="/shows">
+            <Shows shows={shows} />
+          </Route>
+          <Route exact path="/shows/:id">
+            <ShowTitles 
+            shows={shows} />
+          </Route>
           {currentUser && (
-            <Route exact path="/shows">
-              <Shows shows={shows} />
+            <Route exact path="/shows/:id/profiles">
+              <ShowUsers
+                shows={shows}
+                profiles={profiles}
+                setProfiles={setProfiles}
+                currentprofile={currentProfile}
+              />
             </Route>
           )}
-          <Route exact path="/shows/:id">
-            <ShowUsers shows={shows} profiles={profiles} />
-          </Route>
         </Switch>
       </div>
     </BrowserRouter>
@@ -223,4 +183,63 @@ function App() {
 }
 
 export default App;
+
 /* <Profile currentUser={currentUser} setCurrentUser={setCurrentUser} /> */
+
+// $ UPDATE PROFILE FUNCTIONS NOT IN USE
+// function handleUpdateProfile(profileData) {
+//   const newProfObj = { ...currentProfile };
+//   (newProfObj.first_name = profileData.first_name)
+//   (newProfObj.last_name = profileData.last_name)
+//   (newProfObj.bio = profileData.bio)
+//   (newProfObj.show_id = profileData.show.id)
+//   (newProfObj.pronoun_id = profileData.pronoun.id)
+//   (newProfObj.sexuality_id = profileData.sexuality.id)
+//   (newProfObj.user_id = profileData.user.id)
+// }
+
+// $ IMAGE SUBMISSION CODE NOT IN USE
+// function handleImgSubmit(e) {
+//   e.preventDefault();
+//   const pic = new FormData();
+//   pic.append("image", imageData.image);
+//   pic.append("id", currentProfile.id);
+//   // pic.append('id', profile.id)
+
+//   fetch("/update_image", {
+//     method: "PATCH",
+//     body: pic,
+//   })
+//     .then((res) => res.json())
+//     .then((pic) => handleImageUrl(pic.image_url));
+// }
+
+//  $ ACTIONCABLE FUNCTIONS
+// function updateAppStateRoom(newRoom) {
+// 	setCurrentRoom({
+// 		...currentRoom,
+// 		chatroom: newRoom,
+// 		users: newRoom.users,
+// 		messages: newRoom.messages,
+// 	})
+// 	setMessages(newRoom.messages)
+// }
+
+// function handleUpdateCurrentUser(user) {
+// 	setCurrentUser(user)
+// }
+
+// function handleCurrentRoom(result) {
+// 	return {
+// 		chatroom: result.data.attributes,
+// 		users: result.data.attributes.users.data,
+// 		messages: result.data.attributes.messages,
+// 	}
+// }
+
+// function handleClick() {
+//   setShowProfiles(show.profiles)
+// }
+// function handleLogin(currentUser) {
+//   setCurrentUser(currentUser)
+// }

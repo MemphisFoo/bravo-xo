@@ -4,7 +4,10 @@ Rails.application.routes.draw do
   resources :conversations do
     resources :messages
   end
-  resources :shows
+  resources :shows, only: [:show] do
+    resources :users
+    resources :profiles
+  end
   resources :profiles
   resources :pronouns
   resources :block_users
@@ -38,11 +41,13 @@ Rails.application.routes.draw do
   #Profiles
   get "/profiles/:id", to: "users#show"
   get "/profiles", to: "profiles#index"
+  get "/profiles/:id/user", to: "profiles#show_user"
   # get "/profiles/create", to: "profiles#create"
   get "/profiles/:id/edit", to: "profiles#update"
   patch "/update_profile_pic", to: "profiles#update_profile_pic"
-  #Shows
+  #$Shows
   get "/shows", to: "shows#index"
-  get "/shows/:id/users", to: "shows#show_users"
+  get "/shows/:id/users", to: "users#index"
+  get "/shows/:id/profiles", to: "profiles#index"
   get "/shows/:id", to: "shows#show"
 end

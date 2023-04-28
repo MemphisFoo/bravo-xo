@@ -10,6 +10,8 @@ function EditProfileForm({
   sexualities,
   pronouns,
   shows,
+  profiles,
+  setProfiles,
 }) {
   const {
     first_name,
@@ -71,7 +73,10 @@ function EditProfileForm({
       body: JSON.stringify(profileData),
     })
       .then((res) => res.json())
-      .then((data) => onUpdateProfile(data));
+      .then((data) => {
+        onUpdateProfile(data);
+      });
+
     history.push(`/profiles/${profile.id}`);
   }
   function handleProfilePicSubmit(e) {
@@ -114,7 +119,7 @@ function EditProfileForm({
   });
 
   return (
-    <div>
+    <>
       <div className="flex justify-center">
         <div className="p-4 w-half bg-gradient-to-t from-cyan-300 to-purple-900 rounded-lg border border-purple-500 shadow-md sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
           <form className="space-y-6" onSubmit={handleSubmit}>
@@ -223,7 +228,7 @@ function EditProfileForm({
           </form>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

@@ -1,7 +1,14 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 
 function ProfileCard({profile}, {user}) {
   
+  // const [showProfiles, setShowProfiles] = useState ([])
+
+  // useEffect(() => {
+  //   fetch("shows/:id/profiles")
+  //   .then((r) => r.json())
+  //   .then(data => setShowProfiles(data)) 
+  // })
   
     return (
     

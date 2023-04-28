@@ -1,6 +1,11 @@
 class ProfilesController < ApplicationController
   def index
-    profiles = Profile.all
+    if params[:show_id]
+      show = Show.find(params[:show_id])
+      profiles = show.profiles
+      else
+        profiles = Profile.all
+      end
     render json: profiles, status: :ok
   end
 
@@ -13,6 +18,11 @@ class ProfilesController < ApplicationController
   def show
     profile = Profile.find(params[:id])
     render json: profile, status: :ok
+  end
+
+  def show_user
+    show_user = Profile.find(params[:user])
+    render json: show_user, serializer:ProfileWithoutPicSerializer
   end
 
   def update

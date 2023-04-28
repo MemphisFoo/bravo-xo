@@ -24,4 +24,4 @@ function handleClick(){
             )
 }
 
-export default ShowTitles
+export default ShowTitles;

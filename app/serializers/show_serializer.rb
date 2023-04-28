@@ -4,7 +4,7 @@ class ShowSerializer < ActiveModel::Serializer
   has_many :profiles
   has_many :users
 
-  # def profile
-  #   "#{self.object.profiles}"
+  # def profiles
+  #   self.object.profiles
   # end
 end
