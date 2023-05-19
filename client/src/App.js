@@ -168,7 +168,6 @@ function App() {
       <div>
         <Switch>
           <Route exact path="/">
-            {<h1>Welcome to the bravoverse, {currentUser.username}!</h1>}
           </Route>
           <Route exact path="/login">
             <LoginForm
