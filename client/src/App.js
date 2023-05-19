@@ -106,6 +106,8 @@ function App() {
         setShows(data[2]);
       });
   }
+
+  
   //  $ ACTIONCABLE FUNCTIONS
   // function updateAppStateRoom(newRoom) {
   // 	setCurrentRoom({
@@ -166,7 +168,7 @@ function App() {
       <div>
         <Switch>
           <Route exact path="/">
-            {/* <h1>Welcome, {currentUser.username}!</h1> */}
+            {<h1>Welcome to the bravoverse, {currentUser.username}!</h1>}
           </Route>
           <Route exact path="/login">
             <LoginForm
@@ -177,7 +179,6 @@ function App() {
               handleLogout={handleLogout}
               setCurrentProfile={setCurrentProfile}
             />
-            {/* <h1>Welcome, {currentUser.username}!</h1> */}
           </Route>
           <Route exact path="/signup">
             <SignupForm
