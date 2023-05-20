@@ -13,7 +13,7 @@ function Shows() {
     fetch("/shows")
       .then((r) => r.json())
       .then((data) => setShows(data));
-  });
+},[]);
 
   function onShow(show) {
     // history.push(`/shows/${id}`)
