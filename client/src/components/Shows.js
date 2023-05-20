@@ -1,13 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ShowTitles from "./ShowTitles";
 import { useHistory, useParams } from "react-router-dom";
-import "./stylesheets/shows.css";
 import ShowUsers from "./ShowUsers";
-function Shows({ shows, setShowProfiles }) {
-  const [profiles, setProfiles] = useState([]);
+function Shows() {
+  const [profiles, setProfiles] = useState([])
+  const [shows, setShows] = useState([]);
 
   let history = useHistory();
   const { id } = useParams();
+
+  useEffect(() => {
+    fetch("/shows")
+      .then((r) => r.json())
+      .then((data) => setShows(data));
+  });
 
   function onShow(show) {
     // history.push(`/shows/${id}`)
@@ -19,14 +25,11 @@ function Shows({ shows, setShowProfiles }) {
   ));
 
   return (
-    <div className="flex justify-center">
-      <div className="flex items-center">
-        <div className="flex flex-row items-center">
-          <div>{showTitles}</div>
-          {profiles && <ShowUsers profiles={profiles} />}
-        </div>
-      </div>
-    </div>
+          
+            <div>
+              {showTitles}
+              {profiles && <ShowUsers profiles={profiles} />}
+          </div>
   );
 }
 

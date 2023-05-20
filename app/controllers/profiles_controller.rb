@@ -1,6 +1,11 @@
 class ProfilesController < ApplicationController
   def index
-    profiles = Profile.all
+    if params[:show_id]
+      show = Show.find(params[:show_id])
+      profiles = show.profiles
+    else
+      profiles = Profile.all
+    end
     render json: profiles, status: :ok
   end
 

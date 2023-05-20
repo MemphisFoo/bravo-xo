@@ -19,7 +19,12 @@ class UsersController < ApplicationController
   end
 
   def index
-    users = User.all
+    if params[:show_id]
+      show = Show.find(params[:show_id])
+      users = show.users
+    else
+      users = User.all
+    end
     render json: users, status: :ok
   end
 

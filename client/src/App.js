@@ -1,13 +1,13 @@
 import "./components/stylesheets/App.css";
 import { useState, useEffect } from "react";
 import { useHistory, BrowserRouter, Switch, Route } from "react-router-dom";
-// import { useHistory } from "react-router-dom";
 import LoginForm from "./components/LoginForm";
 import SignupForm from "./components/SignupForm";
 import NavBar from "./components/NavBar";
 import Profile from "./components/Profile";
 import Shows from "./components/Shows";
 import ShowUsers from "./components/ShowUsers";
+import ShowTitles from "./components/ShowTitles";
 // import ShowsProfiles from "./components/ShowCards"
 // import Filter from "./components/Filter"
 import EditProfileForm from "./components/EditProfileForm";
@@ -65,31 +65,6 @@ function App() {
     setCurrentProfile(newProfileObj);
   }
   // console.log(currentProfile)
-  // function handleUpdateProfile(profileData) {
-  //   const newProfObj = { ...currentProfile };
-  //   (newProfObj.first_name = profileData.first_name)
-  //   (newProfObj.last_name = profileData.last_name)
-  //   (newProfObj.bio = profileData.bio)
-  //   (newProfObj.show_id = profileData.show.id)
-  //   (newProfObj.pronoun_id = profileData.pronoun.id)
-  //   (newProfObj.sexuality_id = profileData.sexuality.id)
-  //   (newProfObj.user_id = profileData.user.id)
-  // }
-
-  // function handleImgSubmit(e) {
-  //   e.preventDefault();
-  //   const pic = new FormData();
-  //   pic.append("image", imageData.image);
-  //   pic.append("id", currentProfile.id);
-  //   // pic.append('id', profile.id)
-
-  //   fetch("/update_image", {
-  //     method: "PATCH",
-  //     body: pic,
-  //   })
-  //     .then((res) => res.json())
-  //     .then((pic) => handleImageUrl(pic.image_url));
-  // }
 
   // $Promise.all code
   useEffect(() => {
@@ -106,35 +81,6 @@ function App() {
         setShows(data[2]);
       });
   }
-  //  $ ACTIONCABLE FUNCTIONS
-  // function updateAppStateRoom(newRoom) {
-  // 	setCurrentRoom({
-  // 		...currentRoom,
-  // 		chatroom: newRoom,
-  // 		users: newRoom.users,
-  // 		messages: newRoom.messages,
-  // 	})
-  // 	setMessages(newRoom.messages)
-  // }
-
-  // function handleUpdateCurrentUser(user) {
-  // 	setCurrentUser(user)
-  // }
-
-  // function handleCurrentRoom(result) {
-  // 	return {
-  // 		chatroom: result.data.attributes,
-  // 		users: result.data.attributes.users.data,
-  // 		messages: result.data.attributes.messages,
-  // 	}
-  // }
-
-  // function handleClick() {
-  //   setShowProfiles(show.profiles)
-  // }
-  // function handleLogin(currentUser) {
-  //   setCurrentUser(currentUser)
-  // }
 
   const history = { useHistory };
 
@@ -166,7 +112,6 @@ function App() {
       <div>
         <Switch>
           <Route exact path="/">
-            {/* <h1>Welcome, {currentUser.username}!</h1> */}
           </Route>
           <Route exact path="/login">
             <LoginForm
@@ -177,7 +122,6 @@ function App() {
               handleLogout={handleLogout}
               setCurrentProfile={setCurrentProfile}
             />
-            {/* <h1>Welcome, {currentUser.username}!</h1> */}
           </Route>
           <Route exact path="/signup">
             <SignupForm
@@ -208,13 +152,19 @@ function App() {
               />
             </Route>
           )}
-          {currentUser && (
             <Route exact path="/shows">
-              <Shows shows={shows} />
+              <Shows />
             </Route>
-          )}
           <Route exact path="/shows/:id">
-            <ShowUsers shows={shows} profiles={profiles} />
+            <ShowTitles shows={shows} />
+          </Route>
+          <Route exact path="/shows/:id/profiles">
+            <ShowUsers
+            shows={shows}
+            profiles={profiles}
+            setProfiles={setProfiles}
+            currentProfile={currentProfile}
+          />
           </Route>
         </Switch>
       </div>
@@ -224,3 +174,59 @@ function App() {
 
 export default App;
 /* <Profile currentUser={currentUser} setCurrentUser={setCurrentUser} /> */
+//$ Handle Update Profile
+//   function handleUpdateProfile(profileData) {
+//   const newProfObj = { ...currentProfile };
+//   (newProfObj.first_name = profileData.first_name)
+//   (newProfObj.last_name = profileData.last_name)
+//   (newProfObj.bio = profileData.bio)
+//   (newProfObj.show_id = profileData.show.id)
+//   (newProfObj.pronoun_id = profileData.pronoun.id)
+//   (newProfObj.sexuality_id = profileData.sexuality.id)
+//   (newProfObj.user_id = profileData.user.id)
+// } 
+//  $ ACTIONCABLE FUNCTIONS
+  // function updateAppStateRoom(newRoom) {
+  // 	setCurrentRoom({
+  // 		...currentRoom,
+  // 		chatroom: newRoom,
+  // 		users: newRoom.users,
+  // 		messages: newRoom.messages,
+  // 	})
+  // 	setMessages(newRoom.messages)
+  // }
+
+// function handleUpdateCurrentUser(user) {
+  // 	setCurrentUser(user)
+  // }
+
+  // function handleCurrentRoom(result) {
+  // 	return {
+  // 		chatroom: result.data.attributes,
+  // 		users: result.data.attributes.users.data,
+  // 		messages: result.data.attributes.messages,
+  // 	}
+  // }
+
+  // function handleClick() {
+  //   setShowProfiles(show.profiles)
+  // }
+  // function handleLogin(currentUser) {
+  //   setCurrentUser(currentUser)
+  // }
+
+
+  // function handleImgSubmit(e) {
+  //   e.preventDefault();
+  //   const pic = new FormData();
+  //   pic.append("image", imageData.image);
+  //   pic.append("id", currentProfile.id);
+  //   // pic.append('id', profile.id)
+
+  //   fetch("/update_image", {
+  //     method: "PATCH",
+  //     body: pic,
+  //   })
+  //     .then((res) => res.json())
+  //     .then((pic) => handleImageUrl(pic.image_url));
+  // }
