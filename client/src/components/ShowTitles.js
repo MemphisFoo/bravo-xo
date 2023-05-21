@@ -1,13 +1,11 @@
-import React, {useState} from 'react'
-import { useParams, useHistory} from 'react-router-dom'
-import ShowUsers from './ShowUsers'
+import React from 'react'
 
 function ShowTitles({show, onShow}) {
 
 function handleClick(){
     onShow(show)
     const div=document.getElementById('backgroundDiv')
-    console.log(div)
+    // console.log(div)
     div.className=show.acronymn
 }
 

@@ -1,6 +1,5 @@
-import { Button } from "flowbite-react";
 import React, { useState, useEffect } from "react";
-import { useParams, useHistory } from "react-router-dom";
+import {useHistory } from "react-router-dom";
 import "./stylesheets/edit_profile.css";
 
 function EditProfileForm({
@@ -43,6 +42,7 @@ function EditProfileForm({
     profile,
     first_name,
     last_name,
+    bio,
     user_id,
     show_id,
     sexuality_id,
