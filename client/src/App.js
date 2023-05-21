@@ -82,14 +82,13 @@ function App() {
       });
   }
 
-  const history = { useHistory };
+  const history = useHistory();
 
   const handleLogout = () => {
     fetch("/logout", { method: "DELETE" }).then((res) => {
       if (res.ok) {
         setCurrentUser(null);
         setIsLoggedIn(false);
-        history.push("/");
       }
     });
   };
