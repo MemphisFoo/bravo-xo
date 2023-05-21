@@ -2,24 +2,15 @@ import React from "react";
 import { Link, useHistory } from "react-router-dom";
 import "./stylesheets/navbar.css";
 import { Dropdown, Avatar } from "flowbite-react";
-// import Filter from "./Filter.js"
 function NavBar({ profile, currentUser, isLoggedIn, handleLogout }) {
   const {
-    first_name,
-    last_name,
-    email,
-    bio,
-    user_id,
-    sexuality_id,
-    pronoun_id,
-    show_id,
     profile_pic_url,
   } = profile;
   let history = useHistory();
 
   function handleClick() {
     const div=document.getElementById('backgroundDiv')
-    console.log(div)
+    // console.log(div)
     div.className='defaultBackground'
   }
   // console.log(currentUser);
@@ -71,13 +62,6 @@ function NavBar({ profile, currentUser, isLoggedIn, handleLogout }) {
                 <span className="block text-sm">{currentUser.username}</span>
                 <span className="block truncate text-sm font-medium"></span>
               </Dropdown.Header>
-              {/* <Dropdown.Item
-                onClick={() => {
-                  history.push(`/profiles/${currentUser.id}`);
-                }}
-              >
-                Profile
-              </Dropdown.Item> */}
               <Dropdown.Item
                 onClick={() => {
                   history.push(`/profiles/${currentUser.id}/edit`);

@@ -1,8 +1,5 @@
 import { Button } from "flowbite-react";
-import React, { useState, useEffect } from "react";
-// import "./stylesheets/profile.css";
-// import { useParams } from "react-router-dom";
-// import EditProfileForm from "./EditProfileForm"
+import React from "react";
 import { useHistory } from "react-router-dom";
 
 function Profile({ currentProfile }) {
@@ -16,8 +13,7 @@ function Profile({ currentProfile }) {
     pronoun,
     show,
   } = currentProfile;
-  // might need to put useEffect in a conditional in case currentUser is nil
-  const [profileData, setProfileData] = useState({});
+  
 
   function handleClick() {
     history.push(`/profiles/${currentProfile.id}/edit`);
@@ -53,26 +49,3 @@ function Profile({ currentProfile }) {
 }
 
 export default Profile;
-
-// const { id } = useParams();
-
-// useEffect(() => {
-//   fetch(`/profiles/${id}`)
-//     .then((res) => res.json())
-//     .then((data) => setProfile(data));
-// }, [id]);
-// // console.log(profile)
-// if (!profile) {
-//   return <div>loading...</div>;
-// }
-
-// useEffect(() => {
-//   setProfileData({
-//     first_name: first_name,
-//     last_name: last_name,
-//     show_id: show_id,
-//     sexuality_id: sexuality_id,
-//     pronoun_id: pronoun_id
-
-//   })
-// }, [currentProfile, first_name, last_name, show_id, sexuality_id, pronoun_id])
