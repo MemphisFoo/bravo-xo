@@ -6,7 +6,11 @@ function ShowUsers({ profiles }) {
     <ProfileCard key={profile.id} profile={profile} />
   ));
 
-  return <div className="object-center relative flex-inline items-center justify-center">{profileCard}</div>;
+  return (
+    
+      profileCard
+
+  );
 }
 
 export default ShowUsers;

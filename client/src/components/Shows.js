@@ -20,7 +20,6 @@ function Shows() {
   ));
 
   return (
-          
             <div>
               {showTitles}
               {profiles && <ShowUsers profiles={profiles} />}
