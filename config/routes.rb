@@ -20,31 +20,34 @@ Rails.application.routes.draw do
   # root "articles#index"
   get "*path", to: "fallback#index",
                constraints: ->(req) { !req.xhr? && req.format.html? }
-  #Signup
+  #$Signup
   post "/signup", to: "users#create"
 
-  #Logged in
+  #$Logged in
   get "/me", to: "users#show"
   post "/login", to: "sessions#create"
-  #Logged out
+  get "/home", to: "users#show"
+
+  #$Logged out
   delete "/logout", to: "sessions#destroy"
 
-  #Users
+  #$Users
   get "/users", to: "users#index"
 
-  #Search
+  #$Search
   get "/users/:id", to: "users#search"
 
-  #Pronouns
+  #$Pronouns
   get "/pronouns", to: "pronouns#index"
 
-  #Profiles
+  #$Profiles
   get "/profiles/:id", to: "users#show"
   get "/profiles", to: "profiles#index"
   # get "/profiles/create", to: "profiles#create"
   get "/profiles/:id/edit", to: "profiles#update"
   patch "/update_profile_pic", to: "profiles#update_profile_pic"
-  #Shows
+
+  #$Shows
   get "/shows", to: "shows#index"
   get "/shows/:id/users", to: "users#index"
   get "/shows/:id/profiles", to: "profiles#index"

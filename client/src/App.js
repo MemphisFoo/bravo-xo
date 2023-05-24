@@ -4,6 +4,7 @@ import { useHistory, BrowserRouter, Switch, Route } from "react-router-dom";
 import LoginForm from "./components/LoginForm";
 import SignupForm from "./components/SignupForm";
 import NavBar from "./components/NavBar";
+import Home from "./components/Home";
 import Profile from "./components/Profile";
 import Shows from "./components/Shows";
 import ShowUsers from "./components/ShowUsers";
@@ -107,7 +108,6 @@ function App() {
       />
       <div>
         <Switch>
-          <Route exact path="/"></Route>
           <Route exact path="/login">
             <LoginForm
               className="bg-black"
@@ -123,6 +123,9 @@ function App() {
               setCurrentUser={setCurrentUser}
               setCurrentProfile={setCurrentProfile}
             />
+          </Route>
+          <Route exact path="/home">
+            <Home currentUser={currentUser} />
           </Route>
           <Route exact path="/profiles/:id">
             <Profile

@@ -29,7 +29,7 @@ const LoginForm = ({ isLoggedIn, setIsLoggedIn, setCurrentUser, setCurrentProfil
           setCurrentUser(user); 
           setCurrentProfile(user.profile)
           setIsLoggedIn(true)
-          history.push('/')
+          history.push('/home')
           // console.log(isLoggedIn)
           // console.log(user)
         });
