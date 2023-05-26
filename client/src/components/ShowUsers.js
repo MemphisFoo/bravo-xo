@@ -7,10 +7,8 @@ function ShowUsers({ profiles }) {
   ));
 
   return (
-    
-      profileCard
-
-  );
+    profileCard
+    );
 }
 
 export default ShowUsers;

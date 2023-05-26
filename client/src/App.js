@@ -110,7 +110,6 @@ function App() {
         <Switch>
           <Route exact path="/login">
             <LoginForm
-              className="bg-black"
               isLoggedIn={isLoggedIn}
               setIsLoggedIn={setIsLoggedIn}
               setCurrentUser={setCurrentUser}

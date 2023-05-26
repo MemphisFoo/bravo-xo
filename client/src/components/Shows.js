@@ -20,9 +20,9 @@ function Shows() {
   ));
 
   return (
-            <div>
+            <div className="container xl relative list-item">
               {showTitles}
-              {profiles && <ShowUsers profiles={profiles} />}
+               <ShowUsers profiles={profiles} />
           </div>
   );
 }

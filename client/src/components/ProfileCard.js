@@ -5,7 +5,7 @@ function ProfileCard({profile}, {user}) {
   
     return (
     
-          <div className="flex items-center justify-center bg-gradient-to-br from-pink-500 to-purple-500 text-white rounded-lg border shadow-md md:flex-row md:max-w-xl dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
+          <div className="relative inline-flex items-center justify-center bg-gradient-to-br from-pink-500 to-purple-500 text-white rounded-lg border shadow-md md:flex-row md:max-w-xl dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
         <img className="object-scale-down w-96 h-48 rounded-t-md md:object-scale-down md:rounded-none md:rounded-l-lg"  src={profile.profile_pic_url} alt="" />
          <div>
           <p>
